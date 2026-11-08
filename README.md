@@ -334,6 +334,7 @@ npm test
 | File | Covers |
 |---|---|
 | [`test/contract.test.mjs`](test/contract.test.mjs) | Every record rule rejects with its own reason; the live feed's 1970 placeholder; valet tolerance; silent stations; duplicates, a frozen feed and a volume drop as feed-level defects; the station list; the trust verdict |
+| [`test/sync.test.mjs`](test/sync.test.mjs) | The live app's copies of the contract, remediation, gate and places modules are identical to the agents' |
 | [`test/workflow.test.mjs`](test/workflow.test.mjs) | The gate: trusted, a silent watcher, station-level vs feed-level, the 30-minute "last good data" limit, a missing document; intent parsing; station picking (broken docks excluded); de-duplication; every incident kind has an option A; previews never write; approvals write a rule and an audit trail; `CHECK` constraints hold |
 
 ---
@@ -398,7 +399,7 @@ scripts/
 switch/
   docker-compose.yml      Switch's standalone stack, vendored and pinned to 0.31.0
   .env.example
-test/                     18 unit tests
+test/                     19 unit tests
 docs/                     project page, live app (live/), live replay (app/), slides, videos, images, market brief, blog
 ```
 
