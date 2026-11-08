@@ -70,7 +70,7 @@ const steps = cut === '3min'
       { slide: S(3), say: 'So Signoff is two Switch rooms and four agents. A watcher, a fixer and a scribe in data incidents. An analyst at the rebalancing desk. Hand-offs go to roles, the trust state is a room document, and the fixer only listens to the data owner.' },
       ...demo,
       { slide: S(5), say: 'Switch is not a wrapper here. Rooms, roles, threads, room documents, linked rooms and the addressing policy are the whole workflow. Take Switch away and there is no hand-off, no sign-off and no gate.' },
-      { slide: S(7), say: 'Signoff. AI agents catch bad data. A person signs off on the fix. Thank you.', min: 5 },
+      { slide: S(7), say: 'Signoff. AI agents catch bad data. A person signs off on the fix. Thank you to WeMakeDevs, DevTools Academy, the Switch team, and everyone who helped along the way.', min: 6 },
     ]
   : cut === '2min'
     ? [{ slide: S(1), say: 'Signoff: AI agents catch bad data in the team chat, and a person signs off on the fix. Built on Switch.', min: 3 }, ...demo,

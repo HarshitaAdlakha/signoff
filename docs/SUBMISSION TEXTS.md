@@ -83,7 +83,7 @@ Images in order: `docs/img/linkedin-cover.png`, `docs/img/linkedin-incidents.png
 >
 > My background is in system dynamics, and this is a feedback loop: the person deciding needs to know the data is wrong at the moment they decide, not in an engineer's alert channel the next morning.
 >
-> Thank you to WeMakeDevs, DevTools Academy and Switch.
+> A huge thank you to WeMakeDevs and Kunal Kushwaha, DevTools Academy, and the Switch team at SandboxAQ for hosting Flip the Switch and for building Switch in the open. Thank you to Wispr, to the mentors, judges and moderators, and to everyone in the Discord who helped each other get set up.
 >
 > 💻 https://github.com/HarshitaAdlakha/signoff
 >
@@ -104,17 +104,24 @@ Images in order: `docs/img/linkedin-cover.png`, `docs/img/linkedin-incidents.png
 >
 > No SDK, no npm dependencies: the agents speak Switch's WebSocket protocol directly, and the whole stack runs locally with Docker.
 >
+> Thank you to WeMakeDevs and Kunal Kushwaha, DevTools Academy, and the Switch team at SandboxAQ for hosting, to Wispr for supporting the event, and to the mentors, judges and the whole Discord community.
+>
 > 💻 https://github.com/ParasAdlakha/signoff
 >
 > #HowISwitch #AIAgents #DataEngineering #Switch #Hackathon
 
 ## X post (under 280 characters)
 
-> Built Signoff for #HowISwitch 🚲
+> Built Signoff for #HowISwitch
 >
-> AI agents catch bad data in team chat (47 Citi Bike stations "last reported" in 1970), propose a fix, and only the data owner can sign off. Switch refuses everyone else.
+> AI agents catch bad data in team chat (47 Citi Bike stations "last reported" in 1970). Only the data owner can sign off the fix; Switch refuses everyone else.
+>
+> Thanks WeMakeDevs, DevTools Academy & the Switch team!
 >
 > github.com/ParasAdlakha/signoff
+
+
+**Tags to add when posting** (type @ and pick the page or person on each platform): WeMakeDevs, Kunal Kushwaha, DevTools Academy, Switch (SandboxAQ), Wispr. Check each handle on the platform before posting.
 
 ## Code with Wispr (only if you used it)
 

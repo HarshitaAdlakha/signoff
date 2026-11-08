@@ -112,4 +112,8 @@ The watcher pulls the live Citi Bike feed every minute and runs a 12-rule data c
 
 Switch's docs MCP server helped too: add `https://docs.switchagents.ai/mcp` to your coding agent as an HTTP MCP server and ask it how Switch works.
 
+## Thank you
+
+Thank you to WeMakeDevs (Kunal Kushwaha and the team), DevTools Academy, and the Switch team at SandboxAQ for hosting Flip the Switch and for building Switch in the open. Thank you to Wispr, to the mentors, judges and moderators, and to everyone in the WeMakeDevs Discord who helped other builders get set up.
+
 *#HowISwitch*

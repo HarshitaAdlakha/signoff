@@ -39,7 +39,7 @@ Built by **Paras Adlakha** and **Harshita Adlakha** for the **Flip the Switch Ha
 
 ![The live replay: both rooms side by side, threads nested, the trust badge](docs/img/replay.png)
 
-**Contents:** [The hackathon](#the-hackathon) · [The problem](#the-problem) · [The workflow](#the-workflow) · [Why Switch is central](#why-switch-is-central) · [Architecture](#architecture) · [One incident, end to end](#one-incident-end-to-end) · [The data contract](#the-data-contract) · [Remediations and sign-off](#remediations-and-sign-off) · [The trust gate](#the-trust-gate) · [Guardrails](#guardrails) · [Real numbers](#real-numbers) · [Tests](#tests) · [Run it yourself](#run-it-yourself) · [Repository layout](#repository-layout) · [What we learned](#what-we-learned) · [Limitations and roadmap](#limitations-and-roadmap) · [Team](#team) · [References](#references)
+**Contents:** [The hackathon](#the-hackathon) · [The problem](#the-problem) · [The workflow](#the-workflow) · [Why Switch is central](#why-switch-is-central) · [Architecture](#architecture) · [One incident, end to end](#one-incident-end-to-end) · [The data contract](#the-data-contract) · [Remediations and sign-off](#remediations-and-sign-off) · [The trust gate](#the-trust-gate) · [Guardrails](#guardrails) · [Real numbers](#real-numbers) · [Tests](#tests) · [Run it yourself](#run-it-yourself) · [Repository layout](#repository-layout) · [What we learned](#what-we-learned) · [Limitations and roadmap](#limitations-and-roadmap) · [Thank you](#thank-you) · [Team](#team) · [References](#references)
 
 ---
 
@@ -410,6 +410,14 @@ docs/                     project page, live replay (app/), slides, videos, imag
 - **Templated answers.** The analyst phrases answers with fixed templates. Next: a coding agent, run by Switch Console, as an `investigator` role that queries the warehouse read-only for root cause.
 - **Local by default.** The demo runs on the bundled Mattermost. The same rooms work in Slack, Teams, Discord or Telegram through Switch's collaboration bridges.
 - **One feed.** The contract is GBFS, so Divvy, Bay Wheels, Capital Bikeshare and 1,000+ other systems would work unchanged.
+
+---
+
+## Thank you
+
+To **WeMakeDevs** (Kunal Kushwaha and the team) and **DevTools Academy** for hosting Flip the Switch, and to **Switch** and the team at **SandboxAQ** for building an open-source platform we could build a whole workflow on in a few days, and for answering questions throughout. Thank you to **Wispr** for supporting the event, to the mentors, judges and moderators, and to everyone in the WeMakeDevs Discord who helped other builders get Switch running.
+
+Thank you also to **Citi Bike / Lyft** and **MobilityData** for keeping the station feed open, and to the authors whose research shaped how we thought about data trust and human oversight (see [References](#references)).
 
 ---
 
