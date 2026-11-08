@@ -1,0 +1,11 @@
+{
+  "name": "signoff-media",
+  "private": true,
+  "description": "Drives Mattermost to record the demo, and builds the slides, deck and videos. Not needed to run Signoff.",
+  "type": "module",
+  "dependencies": {
+    "pptxgenjs": "3.12.0",
+    "puppeteer-core": "24.43.1",
+    "sharp": "0.33.5"
+  }
+}

@@ -1,0 +1,507 @@
+{
+ "recorded": "2026-11-07T20:48:32.219Z",
+ "source": "Mattermost export of the recorded Signoff session: local Switch 0.31.0, live Citi Bike GBFS feed, 7-8 Nov 2026",
+ "note": "The frozen-feed incidents (INC-004, INC-005) were simulated with `npm run inject -- stale`; everything else is the live feed.",
+ "messages": [
+  {
+   "id": "5x4ob1ca9jykiyo7ohqzer5syw",
+   "root": null,
+   "channel": "data-incidents",
+   "at": 1794084512219,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@remediator **🟠 INC-001 · Stations report a last update before Citi Bike existed**\n47 stations · severity **degraded** · held out of dispatch until a fix is signed off\n> Broadway & W 41 St: last_reported 86400 = 1970-01-02, before Citi Bike existed\n> Prospect Pl & Nostrand Ave: last_reported 86400 = 1970-01-02, before Citi Bike existed\n> W 12 St & Hudson St: last_reported 86400 = 1970-01-02, before Citi Bike existed\nEvidence: run #1, 2,520 records from the live Citi Bike feed, 2,438 accepted\nPlease propose a remediation in this thread.",
+   "t": 0
+  },
+  {
+   "id": "1cojepmjypfqdegkrm5qinmmth",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794084513493,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "⚠️ **INC-001 opened** in ~data-incidents: stations report a last update before Citi Bike existed (47 stations). Answers near those stations carry a caveat until the data owner signs off a fix.",
+   "t": 1
+  },
+  {
+   "id": "iwii199ojpnwtqqcgwph8knjzr",
+   "root": "5x4ob1ca9jykiyo7ohqzer5syw",
+   "channel": "data-incidents",
+   "at": 1794084513810,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@user **Proposed fix for INC-001** · option A: Keep these stations out of dispatch until they report a real timestamp\nWhy: A 1970 timestamp means we cannot tell how old the counts are. Excluding is reversible: a station is re-admitted the first minute it reports a valid time.\nWhat changes if approved:\n- 47 stations stay out of the dispatch view (22 of them in Manhattan below 96 St).\n- Re-admitted automatically the first minute they pass the contract again. Nothing is deleted.\nAlternative B: Admit the counts and treat them as reported now.\nSign-off needed. Reply `@fixer approve INC-001` (or `@fixer approve INC-001 B`), or `@fixer reject INC-001`.",
+   "t": 2
+  },
+  {
+   "id": "7kihbxnnwjygxq7s4gdm7mcs7a",
+   "root": null,
+   "channel": "data-incidents",
+   "at": 1794084514894,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@remediator **🟠 INC-002 · Installed stations have not reported for over a day**\n29 stations · severity **degraded** · held out of dispatch until a fix is signed off\n> Grand Concourse & E 199 St: installed but silent for 36 h\n> W 170 St & University Ave: installed but silent for 41 h\n> University Ave & Morton Pl: installed but silent for 43 h\nEvidence: run #1, 2,520 records from the live Citi Bike feed, 2,438 accepted\nPlease propose a remediation in this thread.",
+   "t": 3
+  },
+  {
+   "id": "7zrb8m7atbycd8x3puk3e13scr",
+   "root": "7kihbxnnwjygxq7s4gdm7mcs7a",
+   "channel": "data-incidents",
+   "at": 1794084515787,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@user **Proposed fix for INC-002** · option A: Keep stations that have been silent for a day out of dispatch\nWhy: An installed station that has not reported for 24 h is usually offline; its counts are a day old.\nWhat changes if approved:\n- 29 stations stay out of the dispatch view (1 of them in Manhattan below 96 St).\n- Re-admitted automatically the first minute they pass the contract again. Nothing is deleted.\nSign-off needed. Reply `@fixer approve INC-002`, or `@fixer reject INC-002`.",
+   "t": 4
+  },
+  {
+   "id": "s4dwhn4tgbbmxeg6p4bo1agm3e",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794084516056,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "⚠️ **INC-002 opened** in ~data-incidents: installed stations have not reported for over a day (29 stations). Answers near those stations carry a caveat until the data owner signs off a fix.",
+   "t": 4
+  },
+  {
+   "id": "fuhtkqirjbrn5ykj6kda5ty78w",
+   "root": null,
+   "channel": "data-incidents",
+   "at": 1794084517197,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@remediator **🟠 INC-003 · Stations report more bikes and docks than they physically have**\n6 stations · severity **degraded** · held out of dispatch until a fix is signed off\n> Bushwick Ave & Stagg St: 18 bikes + docks at a 13-dock station\n> St Johns Pl & Utica Ave: 9 bikes + docks at a 6-dock station\n> Fulton St & Adams St: 73 bikes + docks at a 69-dock station\nEvidence: run #1, 2,520 records from the live Citi Bike feed, 2,438 accepted\nPlease propose a remediation in this thread.",
+   "t": 5
+  },
+  {
+   "id": "appqjkcmz7gsfqwy1tmq11rx7r",
+   "root": "fuhtkqirjbrn5ykj6kda5ty78w",
+   "channel": "data-incidents",
+   "at": 1794084517853,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@user **Proposed fix for INC-003** · option A: Keep these stations out of dispatch until their counts fit their capacity\nWhy: Counts larger than the dock are physically impossible, so neither the bikes nor the docks figure can be trusted.\nWhat changes if approved:\n- 6 stations stay out of the dispatch view (2 of them in Manhattan below 96 St).\n- Re-admitted automatically the first minute they pass the contract again. Nothing is deleted.\nAlternative B: Admit them with bikes and docks clamped to capacity.\nSign-off needed. Reply `@fixer approve INC-003` (or `@fixer approve INC-003 B`), or `@fixer reject INC-003`.",
+   "t": 6
+  },
+  {
+   "id": "7anycjamgir49bbhndz4qxyfhw",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794084518018,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "⚠️ **INC-003 opened** in ~data-incidents: stations report more bikes and docks than they physically have (6 stations). Answers near those stations carry a caveat until the data owner signs off a fix.",
+   "t": 6
+  },
+  {
+   "id": "hs1mo8x6xjd9ixkd47x8rm6c9w",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794084645397,
+   "who": "Harshita Adlakha",
+   "kind": "person",
+   "text": "@analyst which stations near Union Square need bikes?",
+   "t": 133
+  },
+  {
+   "id": "98ek3d9c8idutcb9d777rukojo",
+   "root": "hs1mo8x6xjd9ixkd47x8rm6c9w",
+   "channel": "rebalancing-desk",
+   "at": 1794084654072,
+   "who": "Analyst",
+   "kind": "agent",
+   "text": "🟠 **Drop bikes near Union Square** · caveated · data 2 min old\n- caveat: INC-001: 47 stations held (stations report a last update before Citi Bike existed), awaiting sign-off\n- caveat: INC-002: 29 stations held (installed stations have not reported for over a day), awaiting sign-off\n- caveat: INC-003: 6 stations held (stations report more bikes and docks than they physically have), awaiting sign-off\n[1] **E 25 St & 2 Ave** · 0/79 bikes, 75 docks free · 1022 m\n[2] **E 30 St & Park Ave S** · 0/65 bikes, 64 docks free · 1168 m\n[3] **E 26 St & 3 Ave** · 1/39 bikes (1 e), 34 docks free · 961 m\n[4] **E 23 St & 1 Ave** · 1/27 bikes (1 e), 24 docks free · 1098 m\n[5] **Lexington Ave & E 29 St** · 1/50 bikes, 49 docks free · 1101 m\n1 station near here is held out of this answer by the data contract.",
+   "t": 142
+  },
+  {
+   "id": "xaopxjk6m3reibjgq6xsozqzuo",
+   "root": null,
+   "channel": "data-incidents",
+   "at": 1794084697461,
+   "who": "Harshita Adlakha",
+   "kind": "person",
+   "text": "@fixer approve INC-001",
+   "t": 185
+  },
+  {
+   "id": "ugep8o8x6fd3ibqups539ckfrh",
+   "root": "xaopxjk6m3reibjgq6xsozqzuo",
+   "channel": "data-incidents",
+   "at": 1794084704866,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@harshita I only take instructions from my owner, and this chat account isn't linked to a Switch user yet — so I can't tell whether that's you. If it is, link this account to your Switch user in Switch Console and try again.",
+   "t": 193
+  },
+  {
+   "id": "hukurucinbyt9dsq69z5ktzpnc",
+   "root": "5x4ob1ca9jykiyo7ohqzer5syw",
+   "channel": "data-incidents",
+   "at": 1794084754737,
+   "who": "Paras Adlakha",
+   "kind": "person",
+   "text": "@fixer approve INC-001 ",
+   "t": 243
+  },
+  {
+   "id": "tdm5s55gsbrgtyhpq3g9t1hdhe",
+   "root": "5x4ob1ca9jykiyo7ohqzer5syw",
+   "channel": "data-incidents",
+   "at": 1794084768371,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@monitor 🟢 **Applied option A for INC-001**, signed off by Paras Adlakha: keep these stations out of dispatch until they report a real timestamp. Standing rule `bogus_timestamp → exclude` is live from the next run. Please verify.",
+   "t": 256
+  },
+  {
+   "id": "uounfihrginaxxtjzfk8i6h17y",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794084782550,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "✅ **INC-001 closed**: stations report a last update before Citi Bike existed. Verified on run #14: 47 stations handled by the signed-off rule `exclude`, 0 unhandled.",
+   "t": 270
+  },
+  {
+   "id": "mj4wwgg19prbfj4x93nk6xsq6h",
+   "root": "5x4ob1ca9jykiyo7ohqzer5syw",
+   "channel": "data-incidents",
+   "at": 1794084789119,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@recorder ✅ **INC-001 closed** after 4 min. Verified on run #14: 47 stations handled by the signed-off rule `exclude`, 0 unhandled. Please write the postmortem.",
+   "t": 277
+  },
+  {
+   "id": "bfekq3t6zjropfn4bfqis4qmyy",
+   "root": "5x4ob1ca9jykiyo7ohqzer5syw",
+   "channel": "data-incidents",
+   "at": 1794084804274,
+   "who": "Scribe",
+   "kind": "agent",
+   "text": "📝 Postmortem written: room document `postmortem-INC-001` (timeline of 5 events, signed off by Paras Adlakha).",
+   "t": 292
+  },
+  {
+   "id": "psyspty93ibjiebsc9mtsnqefy",
+   "root": null,
+   "channel": "data-incidents",
+   "at": 1794084846003,
+   "who": "Paras Adlakha",
+   "kind": "person",
+   "text": "@fixer approve INC-003 B",
+   "t": 334
+  },
+  {
+   "id": "ngb755xj1fred8f1886wyjipkh",
+   "root": "fuhtkqirjbrn5ykj6kda5ty78w",
+   "channel": "data-incidents",
+   "at": 1794084859539,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@monitor 🟢 **Applied option B for INC-003**, signed off by Paras Adlakha: admit them with bikes and docks clamped to capacity. Standing rule `over_capacity → clamp` is live from the next run. Please verify.",
+   "t": 347
+  },
+  {
+   "id": "tpop33bqy3dm5gi893ojxow38r",
+   "root": null,
+   "channel": "data-incidents",
+   "at": 1794084860916,
+   "who": "Paras Adlakha",
+   "kind": "person",
+   "text": "@fixer approve INC-002",
+   "t": 349
+  },
+  {
+   "id": "j68eh6du43bi7jq3pk4i79e1po",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794084863416,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "✅ **INC-003 closed**: stations report more bikes and docks than they physically have. Verified on run #17: 9 stations handled by the signed-off rule `clamp`, 0 unhandled.",
+   "t": 351
+  },
+  {
+   "id": "gffi15wux7ryb89quji6m7gj4a",
+   "root": "7kihbxnnwjygxq7s4gdm7mcs7a",
+   "channel": "data-incidents",
+   "at": 1794084878793,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@monitor 🟢 **Applied option A for INC-002**, signed off by Paras Adlakha: keep stations that have been silent for a day out of dispatch. Standing rule `silent_station → exclude` is live from the next run. Please verify.",
+   "t": 367
+  },
+  {
+   "id": "9k38fydyc3gyfyyrua9eqjkkme",
+   "root": "fuhtkqirjbrn5ykj6kda5ty78w",
+   "channel": "data-incidents",
+   "at": 1794084886846,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@recorder ✅ **INC-003 closed** after 6 min. Verified on run #17: 9 stations handled by the signed-off rule `clamp`, 0 unhandled. Please write the postmortem.",
+   "t": 375
+  },
+  {
+   "id": "ubq9qojjgpr4ipu97dcqk6c9zw",
+   "root": "fuhtkqirjbrn5ykj6kda5ty78w",
+   "channel": "data-incidents",
+   "at": 1794084893913,
+   "who": "Scribe",
+   "kind": "agent",
+   "text": "📝 Postmortem written: room document `postmortem-INC-003` (timeline of 5 events, signed off by Paras Adlakha).",
+   "t": 382
+  },
+  {
+   "id": "8s9nimsjppystbbuf1uxz3cxgy",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794084903458,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "✅ **INC-002 closed**: installed stations have not reported for over a day. Verified on run #18: 30 stations handled by the signed-off rule `exclude`, 0 unhandled.",
+   "t": 391
+  },
+  {
+   "id": "tjrtc7c1ujfc3j79othzdbbuza",
+   "root": "7kihbxnnwjygxq7s4gdm7mcs7a",
+   "channel": "data-incidents",
+   "at": 1794084908730,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@recorder ✅ **INC-002 closed** after 6 min. Verified on run #18: 30 stations handled by the signed-off rule `exclude`, 0 unhandled. Please write the postmortem.",
+   "t": 397
+  },
+  {
+   "id": "oqq3zpiy9jngm8arjz3ntx3b8w",
+   "root": "7kihbxnnwjygxq7s4gdm7mcs7a",
+   "channel": "data-incidents",
+   "at": 1794084922155,
+   "who": "Scribe",
+   "kind": "agent",
+   "text": "📝 Postmortem written: room document `postmortem-INC-002` (timeline of 5 events, signed off by Paras Adlakha).",
+   "t": 410
+  },
+  {
+   "id": "3fcha55wobyfznt4exidkh7xuc",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794084955291,
+   "who": "Harshita Adlakha",
+   "kind": "person",
+   "text": "@analyst where do I drop bikes near Bryant Park?",
+   "t": 443
+  },
+  {
+   "id": "3xu4n9d4f7yhmyyhqjmwqhizfy",
+   "root": "3fcha55wobyfznt4exidkh7xuc",
+   "channel": "rebalancing-desk",
+   "at": 1794084965009,
+   "who": "Analyst",
+   "kind": "agent",
+   "text": "🟢 **Drop bikes near Bryant Park** · trusted · data 62 s old\n[1] **E 30 St & Park Ave S** · 0/65 bikes, 64 docks free · 1018 m\n[2] **E 53 St & Lexington Ave** · 0/57 bikes, 54 docks free · 1175 m\n[3] **W 37 St & Broadway** · 1/84 bikes (1 e), 72 docks free · 407 m\n[4] **E 45 St & 3 Ave** · 1/46 bikes (1 e), 43 docks free · 882 m\n[5] **E 48 St & 3 Ave** · 1/78 bikes (1 e), 76 docks free · 960 m\n3 stations near here are held out of this answer by the data contract.",
+   "t": 453
+  },
+  {
+   "id": "mxuszo88strkinguhndytszhta",
+   "root": null,
+   "channel": "data-incidents",
+   "at": 1794085004718,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@remediator **🔴 INC-004 · The feed has stopped updating**\nWhole feed · severity **untrusted** · the analyst refuses dispatch answers until this is handled\n> feed last_updated 6 min ago\nEvidence: run #23, 2,520 records from the live Citi Bike feed, 0 accepted · ⚗️ simulated fault: `stale`\nPlease propose a remediation in this thread.",
+   "t": 492
+  },
+  {
+   "id": "tgmsjjecfirudqgcr9wgnq6fyy",
+   "root": "mxuszo88strkinguhndytszhta",
+   "channel": "data-incidents",
+   "at": 1794085009682,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@user **Proposed fix for INC-004** · option A: Answer from the last good data, stating its age, for up to 30 minutes\nWhy: Station counts drift slowly; for half an hour, last-known counts with their age stated are better than nothing. After 30 minutes the analyst refuses.\nWhat changes if approved:\n- The analyst answers from data last updated 1 min ago, says so in every answer, and refuses after 30 min.\nAlternative B: Pause dispatch answers until the feed recovers.\nSign-off needed. Reply `@fixer approve INC-004` (or `@fixer approve INC-004 B`), or `@fixer reject INC-004`.",
+   "t": 497
+  },
+  {
+   "id": "rgacwy4erj8k3co57y5t5pzuio",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794085011863,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "⚠️ **INC-004 opened** in ~data-incidents: the feed has stopped updating (whole feed). Dispatch answers are paused until it is handled.",
+   "t": 500
+  },
+  {
+   "id": "aqm9oghrkpd47f4itq7d5cgtxc",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794085040973,
+   "who": "Harshita Adlakha",
+   "kind": "person",
+   "text": "@analyst which stations near Union Square need bikes?",
+   "t": 529
+  },
+  {
+   "id": "ntkejg7ozfnb7faqy3kk5r8cde",
+   "root": "aqm9oghrkpd47f4itq7d5cgtxc",
+   "channel": "rebalancing-desk",
+   "at": 1794085046700,
+   "who": "Analyst",
+   "kind": "agent",
+   "text": "🛑 **I won't send a truck on this data.** It can't be trusted right now:\n- INC-004: the feed has stopped updating (proposed)\nFollow it in ~data-incidents. I will answer again once the data owner signs off a fix or the feed recovers.",
+   "t": 534
+  },
+  {
+   "id": "qbzm713p13gmtm88ebax99dzse",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794085080645,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "✅ **INC-004 closed**: the feed has stopped updating. The feed recovered on run #27: 2,443 stations accepted, contract passing.",
+   "t": 568
+  },
+  {
+   "id": "kwwt5aqsifdmufg9d16iobhhca",
+   "root": "mxuszo88strkinguhndytszhta",
+   "channel": "data-incidents",
+   "at": 1794085082998,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@recorder ✅ **INC-004 closed** after 1 min. The feed recovered on run #27: 2,443 stations accepted, contract passing. Please write the postmortem.",
+   "t": 571
+  },
+  {
+   "id": "myp8hesxbbf4ur4a8q1cyqgdgw",
+   "root": "mxuszo88strkinguhndytszhta",
+   "channel": "data-incidents",
+   "at": 1794085086960,
+   "who": "Scribe",
+   "kind": "agent",
+   "text": "📝 Postmortem written: room document `postmortem-INC-004` (timeline of 3 events, signed off by nobody, it recovered on its own).",
+   "t": 575
+  },
+  {
+   "id": "wn4bodcpdpfffesd6ohij6c65r",
+   "root": null,
+   "channel": "data-incidents",
+   "at": 1794114146505,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@remediator **🔴 INC-005 · The feed has stopped updating**\nWhole feed · severity **untrusted** · the analyst refuses dispatch answers until this is handled\n> feed last_updated 6 min ago\nEvidence: run #53, 2,520 records from the live Citi Bike feed, 0 accepted · ⚗️ simulated fault: `stale`\nPlease propose a remediation in this thread.",
+   "t": 29634
+  },
+  {
+   "id": "ys4zadr1k3y1ind17r56w1wt4w",
+   "root": "wn4bodcpdpfffesd6ohij6c65r",
+   "channel": "data-incidents",
+   "at": 1794114155539,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@user **Proposed fix for INC-005** · option A: Answer from the last good data, stating its age, for up to 30 minutes\nWhy: Station counts drift slowly; for half an hour, last-known counts with their age stated are better than nothing. After 30 minutes the analyst refuses.\nWhat changes if approved:\n- The analyst answers from data last updated 1 min ago, says so in every answer, and refuses after 30 min.\nAlternative B: Pause dispatch answers until the feed recovers.\nSign-off needed. Reply `@fixer approve INC-005` (or `@fixer approve INC-005 B`), or `@fixer reject INC-005`.",
+   "t": 29643
+  },
+  {
+   "id": "ecjciydjxtnt3rgf5z9nzr4onr",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794114164012,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "⚠️ **INC-005 opened** in ~data-incidents: the feed has stopped updating (whole feed). Dispatch answers are paused until it is handled.",
+   "t": 29652
+  },
+  {
+   "id": "q6epp7fmkintxjgowf6spfuwcc",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794114204362,
+   "who": "Harshita Adlakha",
+   "kind": "person",
+   "text": "@analyst which stations near Union Square need bikes?",
+   "t": 29692
+  },
+  {
+   "id": "zpg9jsxfbp8zzbamicq7u37auh",
+   "root": "q6epp7fmkintxjgowf6spfuwcc",
+   "channel": "rebalancing-desk",
+   "at": 1794114214622,
+   "who": "Analyst",
+   "kind": "agent",
+   "text": "🛑 **I won't send a truck on this data.** It can't be trusted right now:\n- INC-005: the feed has stopped updating (proposed)\nFollow it in ~data-incidents. I will answer again once the data owner signs off a fix or the feed recovers.",
+   "t": 29702
+  },
+  {
+   "id": "1h8d7iqdq7bjfmn8ejw34b3gme",
+   "root": "wn4bodcpdpfffesd6ohij6c65r",
+   "channel": "data-incidents",
+   "at": 1794114266121,
+   "who": "Paras Adlakha",
+   "kind": "person",
+   "text": "@fixer approve INC-005 ",
+   "t": 29754
+  },
+  {
+   "id": "k3z81m51wt8j9qn3113atwfaee",
+   "root": "wn4bodcpdpfffesd6ohij6c65r",
+   "channel": "data-incidents",
+   "at": 1794114282221,
+   "who": "Fixer",
+   "kind": "agent",
+   "text": "@monitor 🟢 **Applied option A for INC-005**, signed off by Paras Adlakha: answer from the last good data, stating its age, for up to 30 minutes. Standing rule `feed_stale → serve_last_good` is live from the next run. Please verify.",
+   "t": 29770
+  },
+  {
+   "id": "gu951u3haif4xn89qcsmntafjy",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794114340718,
+   "who": "Harshita Adlakha",
+   "kind": "person",
+   "text": "@analyst any stations near Grand Central that need bikes?",
+   "t": 29828
+  },
+  {
+   "id": "iuxy46qqeigzpddbsnxsp8qqiw",
+   "root": "gu951u3haif4xn89qcsmntafjy",
+   "channel": "rebalancing-desk",
+   "at": 1794114352982,
+   "who": "Analyst",
+   "kind": "agent",
+   "text": "🟠 **Drop bikes near Grand Central** · caveated · data 5 min old\n- caveat: INC-005: the feed has stopped updating; answering from data 5 min old (signed off up to 30 min)\n[1] **E 53 St & Lexington Ave** · 0/57 bikes, 53 docks free · 828 m\n[2] **E 53 St & 3 Ave** · 0/41 bikes, 40 docks free · 862 m\n[3] **Park Ave & E 41 St** · 1/109 bikes (1 e), 99 docks free · 138 m\n[4] **E 43 St & Madison Ave** · 1/56 bikes, 44 docks free · 176 m\n[5] **E 46 St & Madison Ave** · 1/53 bikes (1 e), 48 docks free · 301 m\n5 stations near here are held out of this answer by the data contract.",
+   "t": 29841
+  },
+  {
+   "id": "k5byyq7pjtdg8q4gk9b347bsba",
+   "root": null,
+   "channel": "rebalancing-desk",
+   "at": 1794114396365,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "✅ **INC-005 closed**: the feed has stopped updating. The feed recovered on run #65: 2,457 stations accepted, contract passing; standing rule `serve_last_good` stays in place.",
+   "t": 29884
+  },
+  {
+   "id": "7ct9ok3cpiydmksx3g3rnt9q1a",
+   "root": "wn4bodcpdpfffesd6ohij6c65r",
+   "channel": "data-incidents",
+   "at": 1794114402540,
+   "who": "Watcher",
+   "kind": "agent",
+   "text": "@recorder ✅ **INC-005 closed** after 4 min. The feed recovered on run #65: 2,457 stations accepted, contract passing; standing rule `serve_last_good` stays in place. Please write the postmortem.",
+   "t": 29890
+  },
+  {
+   "id": "nosqm1bkhifu7q7p85eeshbsar",
+   "root": "wn4bodcpdpfffesd6ohij6c65r",
+   "channel": "data-incidents",
+   "at": 1794114408006,
+   "who": "Scribe",
+   "kind": "agent",
+   "text": "📝 Postmortem written: room document `postmortem-INC-005` (timeline of 5 events, signed off by Paras Adlakha).",
+   "t": 29896
+  }
+ ]
+}

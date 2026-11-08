@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<title>Signoff slides</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/signoff.css">
+<style>
+  :root { color-scheme: light; }
+  body { background: #777; }
+  .frame { width: 1920px; height: 1080px; position: relative; overflow: hidden; margin: 0 0 40px; background: var(--canvas); }
+  .frame.dots { background: radial-gradient(#dcdcd5 1.3px, transparent 1.3px) 0 0 / 24px 24px, var(--canvas); }
+  .frame .node, .frame .group > .label { z-index: 2; }
+  svg.wires { z-index: 1; }
+  .frame.band { background: radial-gradient(#23252c 1.3px, transparent 1.3px) 0 0 / 24px 24px, var(--band); }
+  .pad { position: absolute; inset: 0; padding: 84px 110px; }
+  .label { font-size: 17px; }
+  .foot { position: absolute; left: 110px; right: 110px; bottom: 44px; display: flex; justify-content: space-between; font: 500 16px "JetBrains Mono", monospace; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+  h2.display { font-size: 92px; margin: 18px 0 0; }
+  .node .label { font-size: 13px; padding: 14px 18px 0; }
+  .node .body { padding: 8px 18px 18px; font-size: 24px; line-height: 1.3; color: var(--ink2); }
+  .node .body b { color: var(--ink); }
+  .node::before, .node::after { top: 26px; }
+  .group { position: absolute; border: 1.5px dashed #b9b9b2; border-radius: 22px; background: rgba(255,255,255,.35); }
+  .group > .label { position: absolute; top: -13px; left: 22px; background: var(--canvas); padding: 0 10px; color: var(--ink); font-weight: 600; }
+  svg.wires { position: absolute; inset: 0; pointer-events: none; }
+  .abs { position: absolute; }
+  .shotcard img { display: block; width: 100%; border-radius: 0 0 13px 13px; border-top: 1px solid var(--line); }
+  .stat .n { font-size: 84px; font-weight: 600; letter-spacing: -.05em; line-height: 1; color: var(--ink); padding: 6px 18px 0; }
+  .stat .src { font: 500 14px "JetBrains Mono", monospace; color: var(--muted); padding: 0 18px 16px; }
+  .v { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 10px; vertical-align: 1px; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Title: aurora, terminal announcement, giant headline, node strip -->
+<section class="frame aurora" id="s1">
+  <div class="pad" style="text-align:center">
+    <div class="term" style="display:inline-block;text-align:left;width:620px;margin-top:6px">
+      <div class="bar"><span>7 Nov 2026 · live Citi Bike feed</span><span>signoff</span></div>
+      <div class="in" style="font-size:17px">watcher › run #1: 2,520 stations
+47 report a last update in 1970 → INC-001 opened
+@remediator please propose a remediation</div>
+    </div>
+    <h1 class="display" style="font-size:214px;margin-top:48px">Signoff</h1>
+    <p style="font-size:46px;line-height:1.15;letter-spacing:-.025em;color:var(--ink);margin:26px auto 0;max-width:1300px;font-weight:500">AI agents catch bad data in the team chat.<br>A person signs off on the fix.</p>
+    <div style="margin-top:44px;display:flex;gap:14px;justify-content:center">
+      <span class="pill lime" style="font-size:22px;padding:14px 26px">Built on Switch</span>
+      <span class="pill" style="font-size:22px;padding:14px 26px">Mattermost · live GBFS data</span>
+      <span class="pill ghost" style="font-size:22px;padding:14px 26px">Track 01 · Business Workflow</span>
+    </div>
+  </div>
+  <div class="abs" id="s1strip" style="left:150px;right:150px;top:800px;height:150px">
+    <div class="node abs" id="k1" style="left:0;top:0;width:260px"><span class="label">Feed</span><div class="body"><b>Citi Bike GBFS</b></div></div>
+    <div class="node abs" id="k2" style="left:340px;top:0;width:260px"><span class="label">Agent · @monitor</span><div class="body"><b>watcher</b> opens INC-001</div></div>
+    <div class="node abs" id="k3" style="left:680px;top:0;width:260px"><span class="label">Agent · @remediator</span><div class="body"><b>fixer</b> proposes</div></div>
+    <div class="node abs" id="k4" style="left:1020px;top:0;width:260px;border:2px solid #0b0b0c;box-shadow:5px 5px 0 var(--lime), 5px 5px 0 1.5px #0b0b0c"><span class="label">Person · data owner</span><div class="body"><b>Paras</b> signs off</div></div>
+    <div class="node abs" id="k5" style="left:1360px;top:0;width:260px"><span class="label">Agent · analyst</span><div class="body"><b class="v-trusted">trusted</b> answer</div></div>
+    <svg class="wires" viewBox="0 0 1620 150" style="width:1620px;height:150px"><path d="M260,30 C300,30 300,30 340,30 M600,30 C640,30 640,30 680,30 M940,30 C980,30 980,30 1020,30 M1280,30 C1320,30 1320,30 1360,30" fill="none" stroke="#9a9ca3" stroke-width="2"/></svg>
+  </div>
+  <div class="foot"><span>Paras Adlakha · Harshita Adlakha</span><span>Flip the Switch Hackathon · Nov 2026</span></div>
+</section>
+
+<!-- 2 · Problem: stats as nodes on a dot canvas -->
+<section class="frame dots" id="s2">
+  <div class="pad">
+    <div class="label">The problem</div>
+    <h2 class="display">A truck goes wherever the data says.<br>Nobody in the room knows it's wrong.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:56px">
+      <div class="node stat noports"><span class="label">Live feed · 7 Nov 2026</span><div class="n v-untrusted">47</div><div class="body">Citi Bike stations reporting a last update in <b>1970</b>, plus 9 over capacity and 27 silent for a day</div><div class="src">Signoff, first run</div></div>
+      <div class="node stat noports"><span class="label">Revenue at risk</span><div class="n">31%</div><div class="body">of revenue affected by data quality issues on average; <b>~15 h</b> per incident to resolve</div><div class="src">Monte Carlo survey, 2023</div></div>
+      <div class="node stat noports"><span class="label">Data cascades</span><div class="n">92%</div><div class="body">of high-stakes AI projects hit compounding downstream harm, "invisible, delayed, but often avoidable"</div><div class="src">Sambasivan et al., CHI 2021</div></div>
+      <div class="node stat noports"><span class="label">Cost</span><div class="n">$12.9M</div><div class="body">a year: average cost of poor data quality per organisation</div><div class="src">Gartner, reference-customer survey</div></div>
+      <div class="node stat noports"><span class="label">Agentic AI</span><div class="n">40%+</div><div class="body">of agentic AI projects expected to be cancelled by 2027, citing cost, value and <b>weak risk controls</b></div><div class="src">Gartner, June 2025</div></div>
+      <div class="node stat noports"><span class="label">Regulation</span><div class="n">Art. 14</div><div class="body">EU AI Act: overseers must be able to understand, <b>override</b> and stop high-risk AI</div><div class="src">Regulation (EU) 2024/1689</div></div>
+    </div>
+  </div>
+  <div class="foot"><span>Signoff</span><span>02 / 07</span></div>
+</section>
+
+<!-- 3 · The workflow as a node canvas -->
+<section class="frame dots" id="s3">
+  <div class="pad" style="padding-bottom:0">
+    <div class="label">The workflow · two Switch rooms · four agents · two people</div>
+    <h2 class="display" style="font-size:76px">Detect → propose → sign off → verify → gate.</h2>
+  </div>
+  <div class="group" style="left:330px;top:300px;width:840px;height:700px"><span class="label">Room · #data-incidents</span></div>
+  <div class="group" style="left:1210px;top:300px;width:660px;height:700px"><span class="label">Room · #rebalancing-desk</span></div>
+
+  <div class="node abs" id="n-feed" style="left:60px;top:360px;width:230px"><span class="label">Feed · GBFS</span><div class="body"><b>Citi Bike</b> live, public, every minute</div></div>
+  <div class="node abs" id="n-watch" style="left:370px;top:350px;width:340px"><span class="label">Agent · watcher · @monitor</span><div class="body">12-rule contract → <b>one thread per incident</b>, with evidence</div></div>
+  <div class="node abs" id="n-fix" style="left:790px;top:350px;width:340px"><span class="label">Agent · fixer · @remediator</span><div class="body"><b>Proposes</b>, previews what changes, asks the owner</div></div>
+  <div class="node abs" id="n-paras" style="left:790px;top:590px;width:340px;border:2px solid #0b0b0c;box-shadow:5px 5px 0 var(--lime), 5px 5px 0 1.5px #0b0b0c"><span class="label">Person · Paras · data owner</span><div class="body"><code style="font-size:20px">@fixer approve INC-001</code></div></div>
+  <div class="node abs" id="n-scribe" style="left:370px;top:590px;width:340px"><span class="label">Agent · scribe · @recorder</span><div class="body">Watcher <b>verifies</b> on the next run; scribe writes the <b>postmortem</b></div></div>
+  <div class="node abs" id="n-try" style="left:370px;top:830px;width:340px"><span class="label">Person · Harshita</span><div class="body"><code style="font-size:20px">@fixer approve INC-001</code></div></div>
+  <div class="node abs" id="n-no" style="left:790px;top:830px;width:340px;border-color:var(--untrusted)"><span class="label" style="color:var(--untrusted)">Switch · addressing policy</span><div class="body"><b>Refused:</b> the fixer only takes instructions from its owner</div></div>
+
+  <div class="node abs" id="n-doc" style="left:1250px;top:350px;width:270px"><span class="label">Room document</span><div class="body"><b>data-status</b>: verdict, open incidents, rules</div></div>
+  <div class="node abs" id="n-q" style="left:1250px;top:610px;width:270px"><span class="label">Person · Harshita · dispatch</span><div class="body">"Stations near Union Square that need bikes?"</div></div>
+  <div class="node abs" id="n-an" style="left:1570px;top:350px;width:270px"><span class="label">Agent · analyst</span><div class="body">Reads <b>data-status</b> before every answer</div></div>
+  <div class="node abs noports" id="n-v1" style="left:1570px;top:580px;width:270px"><div class="body" style="padding-top:16px"><span class="v" style="background:var(--untrusted)"></span><b>untrusted</b> → "I won't send a truck"</div></div>
+  <div class="node abs noports" id="n-v2" style="left:1570px;top:720px;width:270px"><div class="body" style="padding-top:16px"><span class="v" style="background:var(--caveated)"></span><b>caveated</b> → answer + incidents named</div></div>
+  <div class="node abs noports" id="n-v3" style="left:1570px;top:860px;width:270px"><div class="body" style="padding-top:16px"><span class="v" style="background:var(--trusted)"></span><b>trusted</b> → answer, cited [n]</div></div>
+  <svg class="wires" id="w3"></svg>
+  <script>
+    (function () {
+      const f = document.getElementById('s3'), svg = document.getElementById('w3');
+      const box = (id) => { const r = document.getElementById(id).getBoundingClientRect(), o = f.getBoundingClientRect(); return { l: r.left - o.left, r: r.right - o.left, t: r.top - o.top, b: r.bottom - o.top, cy: r.top - o.top + 30, cx: (r.left + r.right) / 2 - o.left }; };
+      const edges = [['n-feed','n-watch','rl'],['n-watch','n-fix','rl'],['n-fix','n-paras','bt'],['n-paras','n-scribe','lr'],['n-try','n-no','rl'],['n-watch','n-doc','top'],['n-doc','n-an','rl'],['n-q','n-an','rl'],['n-an','n-v1','bt'],['n-v1','n-v2','bt'],['n-v2','n-v3','bt']];
+      let d = '';
+      for (const [a, b, k] of edges) {
+        const A = box(a), B = box(b);
+        if (k === 'rl') { const x1 = A.r, y1 = A.cy, x2 = B.l, y2 = B.cy, m = (x2 - x1) / 2; d += `M${x1},${y1} C${x1 + m},${y1} ${x2 - m},${y2} ${x2},${y2} `; }
+        if (k === 'lr') { const x1 = A.l, y1 = A.cy, x2 = B.r, y2 = B.cy, m = (x1 - x2) / 2; d += `M${x1},${y1} C${x1 - m},${y1} ${x2 + m},${y2} ${x2},${y2} `; }
+        if (k === 'bt') { const x1 = A.cx, y1 = A.b, x2 = B.cx, y2 = B.t, m = (y2 - y1) / 2; d += `M${x1},${y1} C${x1},${y1 + m} ${x2},${y2 - m} ${x2},${y2} `; }
+        if (k === 'top') { const x1 = A.cx, y1 = A.t, x2 = B.cx, y2 = B.t; d += `M${x1},${y1} C${x1},${y1 - 150} ${x2},${y2 - 150} ${x2},${y2} `; }
+      }
+      svg.setAttribute('viewBox', '0 0 1920 1080');
+      svg.innerHTML = `<path d="${d}" fill="none" stroke="#9a9ca3" stroke-width="2"/>`;
+    })();
+  </script>
+</section>
+
+<!-- 4 · Live: screenshots as node cards -->
+<section class="frame dots" id="s4">
+  <div class="pad">
+    <div class="label">Live, on real data</div>
+    <h2 class="display" style="font-size:80px">Three real incidents on the first run.</h2>
+  </div>
+  <div class="node abs shotcard noports" style="left:110px;top:300px;width:900px"><span class="label">Room · #data-incidents · the fixer's proposal for INC-001</span><div style="height:12px"></div><img src="../img/proposal.png"></div>
+  <div class="node abs shotcard noports" style="left:1060px;top:360px;width:750px"><span class="label">Room · #rebalancing-desk · a caveated answer</span><div style="height:12px"></div><img src="../img/answer-caveated.png"></div>
+  <div class="foot"><span>Signoff</span><span>04 / 07</span></div>
+</section>
+
+<!-- 5 · Why Switch: dark band -->
+<section class="frame band" id="s5">
+  <div class="pad">
+    <div class="label">Why Switch is central</div>
+    <h2 class="display" style="color:var(--band-ink)">Take Switch away and there's<br>no hand-off, no sign-off, no gate.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:54px">
+      <div class="term" style="background:#15161b;border-color:#3a3c44;box-shadow:4px 4px 0 var(--lime);color:var(--band-ink)"><div class="bar" style="border-color:#3a3c44"><span>rooms → mattermost</span></div><div class="in" style="font-size:20px">create_room(people, agents,
+  instructions, roles, links)</div></div>
+      <div class="term" style="background:#15161b;border-color:#3a3c44;box-shadow:4px 4px 0 var(--lime);color:var(--band-ink)"><div class="bar" style="border-color:#3a3c44"><span>roles, exclusive</span></div><div class="in" style="font-size:20px">send_targeted_message(
+  target_roles=["remediator"])</div></div>
+      <div class="term" style="background:#15161b;border-color:#3a3c44;box-shadow:4px 4px 0 var(--lime);color:var(--band-ink)"><div class="bar" style="border-color:#3a3c44"><span>addressing = the sign-off gate</span></div><div class="in" style="font-size:20px">fixer.addressing =
+  "owner_and_owner_agents"</div></div>
+      <div class="term" style="background:#15161b;border-color:#3a3c44;box-shadow:4px 4px 0 var(--lime);color:var(--band-ink)"><div class="bar" style="border-color:#3a3c44"><span>room documents = shared state</span></div><div class="in" style="font-size:20px">data-status · incident-log
+postmortem-INC-00x</div></div>
+      <div class="term" style="background:#15161b;border-color:#3a3c44;box-shadow:4px 4px 0 var(--lime);color:var(--band-ink)"><div class="bar" style="border-color:#3a3c44"><span>threads · linked rooms</span></div><div class="in" style="font-size:20px">one incident = one thread
+desk ⇄ incidents, labelled</div></div>
+      <div class="term" style="background:#15161b;border-color:#3a3c44;box-shadow:4px 4px 0 var(--lime);color:var(--band-ink)"><div class="bar" style="border-color:#3a3c44"><span>agent protocol, no SDK</span></div><div class="in" style="font-size:20px">WebSocket events + ping/pong
+HTTP ops · resume from cursor</div></div>
+    </div>
+  </div>
+  <p class="abs" style="left:110px;right:110px;top:790px;margin:0;font-size:50px;line-height:1.15;letter-spacing:-.03em;color:var(--band-ink);font-weight:500">Our agents never call each other. Every hand-off, approval and refusal goes through the room, <span style="background:var(--lime);color:#0b0b0c;padding:0 10px;border-radius:8px">where people can see it.</span></p>
+  <div class="foot" style="color:#8d8f96"><span>Signoff</span><span>05 / 07</span></div>
+</section>
+
+<!-- 6 · The gate -->
+<section class="frame dots" id="s6">
+  <div class="pad">
+    <div class="label">The gate is the platform's</div>
+    <h2 class="display" style="font-size:80px">Only the data owner can change<br>how data is treated.</h2>
+  </div>
+  <div class="node abs shotcard noports" style="left:110px;top:400px;width:880px"><span class="label">Harshita tries to approve · Switch answers for the fixer</span><div style="height:12px"></div><img src="../img/refused.png"></div>
+  <div class="abs" style="left:1060px;top:400px;width:750px;display:grid;gap:22px">
+    <div class="node noports"><span class="label">Standing rules</span><div class="body">Every option is <b>previewed</b>, applied in one transaction with the <b>approver's name</b>, and <b>verified</b> on the next run. Nothing deleted.</div></div>
+    <div class="node noports"><span class="label">Bounded fallbacks</span><div class="body">Feed frozen → "answer from the last good data, <b>stating its age</b>, for up to 30 minutes". After that the analyst refuses again.</div></div>
+    <div class="node noports"><span class="label">A silent watcher is a failed watcher</span><div class="body">No run in 3 minutes → <b class="v-untrusted">untrusted</b>, whatever the document says.</div></div>
+  </div>
+  <div class="foot"><span>Signoff</span><span>06 / 07</span></div>
+</section>
+
+<!-- 7 · Close -->
+<section class="frame aurora" id="s7">
+  <div class="pad">
+    <div class="label">Next</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:22px">
+      <div class="node noports"><span class="label">Governance</span><div class="body">Two-person sign-off for feed-level incidents; expiry on standing rules</div></div>
+      <div class="node noports"><span class="label">Investigator role</span><div class="body">A coding agent run by Switch Console, read-only root cause</div></div>
+      <div class="node noports"><span class="label">Every chat</span><div class="body">Slack, Teams, Discord through Switch's bridges</div></div>
+      <div class="node noports"><span class="label">Every feed</span><div class="body">1,000+ GBFS systems; any table a team decides from</div></div>
+    </div>
+    <h2 class="display" style="font-size:150px;margin-top:110px">AI agents catch bad data.<br>A person signs off.</h2>
+    <div style="margin-top:46px;display:flex;gap:14px">
+      <span class="pill lime" style="font-size:24px;padding:14px 26px">github.com/ParasAdlakha/signoff</span>
+      <span class="pill" style="font-size:24px;padding:14px 26px">Signoff on Switch</span>
+    </div>
+  </div>
+  <div class="foot"><span>Paras Adlakha · Harshita Adlakha</span><span>07 / 07</span></div>
+</section>
+
+</body>
+</html>

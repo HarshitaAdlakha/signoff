@@ -1,0 +1,10 @@
+node_modules/
+var/
+switch/.env
+_installer/
+scripts/media/node_modules/
+scripts/media/rec/
+scripts/media/_*.mjs
+*.log
+scripts/media/rec*/
+scripts/media/*.log

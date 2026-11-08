@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signoff replay</title>
+<meta name="description" content="A step-by-step replay of a real Signoff session: four AI agents and two people in two Switch rooms, on the live Citi Bike feed.">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/signoff.css">
+<style>
+  body { min-height: 100vh; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 16px 60px; }
+  header { padding: 18px 0 8px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  header a.brand { font: 600 18px "Inter Tight"; letter-spacing: -.02em; text-decoration: none; }
+  .hero { padding: 26px 0 18px; }
+  .hero h1 { font-size: clamp(40px, 7vw, 84px); }
+  .hero p { max-width: 820px; color: var(--ink2); font-size: 18px; }
+  .bar { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 14px; margin: 14px 0 18px;
+         background: color-mix(in srgb, var(--node) 88%, transparent); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 16px; }
+  .bar button { cursor: pointer; }
+  .bar .pill { font-size: 14px; }
+  .trust { display: inline-flex; align-items: center; gap: 8px; font: 600 14px "JetBrains Mono"; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--node); }
+  .trust .d { width: 10px; height: 10px; border-radius: 50%; }
+  .step { flex: 1 1 260px; font-size: 15px; color: var(--ink2); min-width: 0; }
+  .step b { color: var(--ink); }
+  .prog { height: 4px; width: 100%; background: var(--line); border-radius: 4px; overflow: hidden; flex-basis: 100%; }
+  .prog > i { display: block; height: 100%; width: 0; background: var(--ink); transition: width .3s; }
+  .rooms { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; }
+  .room { display: flex; flex-direction: column; min-height: 520px; max-height: 78vh; }
+  .room .head { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 18px 10px; border-bottom: 1px solid var(--line); gap: 10px; flex-wrap: wrap; }
+  .room .head h2 { margin: 0; font: 600 20px "JetBrains Mono"; letter-spacing: -.01em; }
+  .room .feed { overflow-y: auto; padding: 12px 14px 18px; scroll-behavior: smooth; flex: 1; }
+  .msg { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 8px 6px; border-radius: 10px; animation: in .35s ease; }
+  .msg.reply { margin-left: 38px; border-left: 2px solid var(--line); border-radius: 0 10px 10px 0; padding-left: 10px; }
+  .msg.new { background: color-mix(in srgb, var(--lime) 30%, transparent); }
+  @keyframes in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .av { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font: 600 13px "JetBrains Mono"; color: #0b0b0c; }
+  .who { font-weight: 600; font-size: 14px; }
+  .tag { font: 500 10px "JetBrains Mono"; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-left: 6px; }
+  .txt { font-size: 14.5px; line-height: 1.5; color: var(--ink2); overflow-wrap: anywhere; }
+  .txt b { color: var(--ink); }
+  .txt code { font-size: 12.5px; background: color-mix(in srgb, var(--line) 60%, transparent); padding: 1px 5px; border-radius: 4px; }
+  .txt .q { border-left: 3px solid var(--line); padding-left: 10px; color: var(--muted); margin: 4px 0; }
+  .txt ul { margin: 4px 0; padding-left: 18px; }
+  .gap { text-align: center; font: 500 11px "JetBrains Mono"; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 14px 0; }
+  .empty { color: var(--muted); font-size: 14px; padding: 20px 8px; }
+  .foot { color: var(--muted); font-size: 13px; margin-top: 18px; }
+  @media (max-width: 900px) { .rooms { grid-template-columns: 1fr; } .room { max-height: none; min-height: 0; } .msg.reply { margin-left: 18px; } }
+</style>
+</head>
+<body>
+<div class="aurora"><div class="wrap">
+  <header>
+    <a class="brand" href="../">Signoff</a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="pill ghost" href="../">Project page</a>
+      <a class="pill" href="https://github.com/ParasAdlakha/signoff">GitHub</a>
+    </div>
+  </header>
+  <div class="hero">
+    <div class="label">Public replay · a real session</div>
+    <h1 class="display">Watch the room work.</h1>
+    <p>Every message below was posted in Mattermost by Signoff's four agents and two people, on a local Switch server reading the live Citi Bike feed. It's replayed in order, step by step. The frozen-feed incidents (INC-004, INC-005) were simulated and are labelled; everything else is the live feed.</p>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <div class="bar" role="region" aria-label="Replay controls">
+    <button class="pill lime" id="play">▶ Play</button>
+    <button class="pill ghost" id="next">Next step</button>
+    <button class="pill ghost" id="all">Show all</button>
+    <button class="pill ghost" id="restart">Restart</button>
+    <span class="trust" id="trust"><span class="d" style="background:var(--trusted)"></span><span>trusted</span></span>
+    <div class="step" id="step">Press <b>Play</b> to start the replay.</div>
+    <div class="prog"><i id="prog"></i></div>
+  </div>
+
+  <div class="rooms">
+    <section class="node noports room"><div class="head"><h2>#data-incidents</h2><span class="label">watcher · fixer · scribe · Paras · Harshita</span></div><div class="feed" id="f-data-incidents"><div class="empty">The watcher hasn't run yet.</div></div></section>
+    <section class="node noports room"><div class="head"><h2>#rebalancing-desk</h2><span class="label">analyst · watcher · Harshita · Paras</span></div><div class="feed" id="f-rebalancing-desk"><div class="empty">Quiet so far.</div></div></section>
+  </div>
+  <p class="foot" id="src"></p>
+</div>
+
+<script>
+(async function () {
+  const data = await fetch('replay.json').then((r) => r.json());
+  const msgs = data.messages;
+  document.getElementById('src').textContent = `${data.source}. ${data.note}`;
+  const COLORS = { 'Paras Adlakha': '#e3ff5c', 'Harshita Adlakha': '#ffb37a', Watcher: '#ff9ec7', Fixer: '#8fb0ff', Analyst: '#7ee0c3', Scribe: '#c7a8ff' };
+  const INIT = { 'Paras Adlakha': 'PA', 'Harshita Adlakha': 'HA', Watcher: 'W', Fixer: 'F', Analyst: 'A', Scribe: 'S' };
+  const ROLE = { 'Paras Adlakha': 'data owner', 'Harshita Adlakha': 'dispatch lead', Watcher: 'agent · @monitor', Fixer: 'agent · @remediator', Analyst: 'agent · @dispatch-analyst', Scribe: 'agent · @recorder' };
+
+  const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  function md(s) {
+    const lines = esc(s.replace(/@user\b/g, '@Paras Adlakha')).split('\n');
+    let html = '', inList = false;
+    for (let l of lines) {
+      l = l.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+      if (/^- /.test(l)) { if (!inList) { html += '<ul>'; inList = true; } html += `<li>${l.slice(2)}</li>`; continue; }
+      if (inList) { html += '</ul>'; inList = false; }
+      if (/^&gt; /.test(l)) html += `<div class="q">${l.slice(5)}</div>`;
+      else html += `${l}<br>`;
+    }
+    if (inList) html += '</ul>';
+    return html.replace(/(<br>)+$/, '');
+  }
+
+  // Steps: each message is a step; captions explain what's happening at key moments.
+  function caption(m) {
+    const t = m.text;
+    if (/INC-\d+ · /.test(t) && m.who === 'Watcher') return `<b>Detect.</b> The watcher's contract failed on the live feed: one thread per incident, handed to whoever holds <code>@remediator</code>.`;
+    if (/Proposed fix/.test(t)) return `<b>Propose.</b> The fixer replies in the thread with a fix, a preview of what changes, an alternative, and asks Paras to sign off.`;
+    if (/opened\*\* in/.test(t)) return `<b>Heads-up.</b> The watcher tells the desk, and updates the <code>data-status</code> room document the analyst reads.`;
+    if (m.who === 'Harshita Adlakha' && /@analyst/.test(t)) return `<b>Ask.</b> Harshita asks the analyst where to send a truck.`;
+    if (/won't send a truck/.test(t)) return `<b>Refuse.</b> The feed is frozen and unhandled: the analyst won't dispatch on it.`;
+    if (m.who === 'Analyst' && /caveated/.test(t)) return `<b>Caveated answer.</b> The analyst answers, naming every open incident.`;
+    if (m.who === 'Analyst' && /trusted/.test(t)) return `<b>Trusted answer.</b> Every incident is closed.`;
+    if (/only take instructions from my owner/.test(t)) return `<b>The gate.</b> Harshita tried to approve. <b>Switch</b> refuses on the fixer's behalf: owner only.`;
+    if (m.who === 'Paras Adlakha') return `<b>Sign-off.</b> Paras, the data owner, approves.`;
+    if (/Applied option/.test(t)) return `<b>Apply.</b> A standing rule with Paras's name on it, handed to <code>@monitor</code> to verify.`;
+    if (/closed/.test(t) && m.who === 'Watcher') return `<b>Verify and close.</b> The watcher checked the next run and closed the incident.`;
+    if (/Postmortem written/.test(t)) return `<b>Record.</b> The scribe writes the postmortem as a room document.`;
+    return `<b>${esc(m.who)}</b> in #${m.channel}.`;
+  }
+
+  let i = 0, timer = null;
+  const open = new Set();
+  const elTrust = document.getElementById('trust'), elStep = document.getElementById('step'), elProg = document.getElementById('prog');
+  const feeds = { 'data-incidents': document.getElementById('f-data-incidents'), 'rebalancing-desk': document.getElementById('f-rebalancing-desk') };
+
+  function setTrust() {
+    const ids = [...open];
+    const feed = ids.some((id) => /^feed/.test(open.kindOf?.[id] || ''));
+    const v = !ids.length ? 'trusted' : [...open].some((id) => feedLevel.has(id)) ? 'untrusted' : 'caveated';
+    const c = { trusted: 'var(--trusted)', caveated: 'var(--caveated)', untrusted: 'var(--untrusted)' }[v];
+    elTrust.innerHTML = `<span class="d" style="background:${c}"></span><span>${v}${ids.length ? ' · ' + ids.join(', ') : ''}</span>`;
+  }
+  const feedLevel = new Set();
+  const handled = new Set();
+
+  function render(m, prev) {
+    const f = feeds[m.channel];
+    f.querySelector('.empty')?.remove();
+    if (prev && m.t - prev.t > 3600) {
+      const g = document.createElement('div'); g.className = 'gap';
+      g.textContent = `· ${Math.round((m.t - prev.t) / 3600)} h later: a second session on the same server ·`;
+      for (const x of Object.values(feeds)) x.append(g.cloneNode(true));
+    }
+    document.querySelectorAll('.msg.new').forEach((e) => e.classList.remove('new'));
+    const d = document.createElement('div');
+    d.className = `msg new${m.root ? ' reply' : ''}`;
+    d.innerHTML = `<div class="av" style="background:${COLORS[m.who]}">${INIT[m.who]}</div><div><span class="who">${esc(m.who)}</span><span class="tag">${ROLE[m.who]}</span><div class="txt">${md(m.text)}</div></div>`;
+    // Replies go right under their thread.
+    const rootEl = m.root && f.querySelector(`[data-thread="${m.root}"]`);
+    if (rootEl) { let last = rootEl; while (last.nextElementSibling?.dataset.parent === m.root) last = last.nextElementSibling; d.dataset.parent = m.root; last.after(d); }
+    else { d.dataset.thread = m.id; f.append(d); }
+    d.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+
+    const opened = m.who === 'Watcher' && m.text.match(/(INC-\d+) · /);
+    if (opened) { open.add(opened[1]); if (/Whole feed|untrusted/.test(m.text)) feedLevel.add(opened[1]); }
+    const applied = m.text.match(/Applied option \w for (INC-\d+)/);
+    if (applied && feedLevel.has(applied[1])) feedLevel.delete(applied[1]); // a signed-off fallback → caveated
+    const closed = m.who === 'Watcher' && m.text.match(/(INC-\d+) closed/);
+    if (closed) { open.delete(closed[1]); feedLevel.delete(closed[1]); }
+    setTrust();
+  }
+
+  function step() {
+    if (i >= msgs.length) { stop(); elStep.innerHTML = '<b>End of the replay.</b> Every incident was detected, signed off, verified and written up.'; return false; }
+    render(msgs[i], msgs[i - 1]);
+    elStep.innerHTML = caption(msgs[i]);
+    i++;
+    elProg.style.width = `${(100 * i) / msgs.length}%`;
+    return true;
+  }
+  function stop() { clearInterval(timer); timer = null; document.getElementById('play').textContent = '▶ Play'; }
+  function play() { if (timer) return stop(); if (i >= msgs.length) restart(); document.getElementById('play').textContent = '❚❚ Pause'; step(); timer = setInterval(() => step(), 1700); }
+  function restart() {
+    stop(); i = 0; open.clear(); feedLevel.clear(); setTrust(); elProg.style.width = '0';
+    feeds['data-incidents'].innerHTML = '<div class="empty">The watcher hasn\'t run yet.</div>';
+    feeds['rebalancing-desk'].innerHTML = '<div class="empty">Quiet so far.</div>';
+    elStep.innerHTML = 'Press <b>Play</b> to start the replay.';
+  }
+  document.getElementById('play').onclick = play;
+  document.getElementById('next').onclick = () => { stop(); step(); };
+  document.getElementById('all').onclick = () => { stop(); while (step()); };
+  document.getElementById('restart').onclick = restart;
+  if (new URLSearchParams(location.search).has('all')) while (step());
+})();
+</script>
+</body>
+</html>

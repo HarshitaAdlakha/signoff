@@ -1,0 +1,10 @@
+Signoff
+Copyright (c) 2026 Paras Adlakha and Harshita Adlakha. Licensed under the MIT License (see LICENSE).
+
+This repository includes switch/docker-compose.yml and switch/.env.example, vendored from
+Switch (https://github.com/sandbox-quantum/switch), Copyright SandboxAQ, licensed under the
+Apache License 2.0 with the Commons Clause. Those two files remain under their original licence.
+Signoff runs the published Switch images (ghcr.io/sandbox-quantum/*) pinned to 0.31.0; it does
+not modify or redistribute Switch itself.
+
+Citi Bike station data (c) Lyft / Citi Bike, used under the Citi Bike Data License Agreement.

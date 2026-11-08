@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signoff market brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/signoff.css">
+<style>
+  :root { --paper:var(--canvas); --card:var(--node); --mint:#0b0b0c; --accent:var(--lime); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --paper:#14161b; --card:#1c1f26; --ink:#eceae4; --ink2:#c3c2bd; --muted:#8d8f96; --line:#30333b; --mint:#5eead4; --accent:#12352f; } }
+  :root[data-theme="dark"] { --paper:#14161b; --card:#1c1f26; --ink:#eceae4; --ink2:#c3c2bd; --muted:#8d8f96; --line:#30333b; --mint:#5eead4; --accent:#12352f; }
+  body { margin:0; background:var(--aurora) no-repeat top / 100% 520px, var(--paper); color:var(--ink); font:17px/1.6 "Inter Tight", Arial, sans-serif; }
+  main { max-width:900px; margin:0 auto; padding:56px 16px 90px; }
+  .label { font:500 11px "JetBrains Mono", monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--mint); }
+  h1 { font-size:clamp(40px,7vw,76px); line-height:.96; letter-spacing:-.055em; font-weight:600; margin:14px 0 18px; }
+  h2 { font-size:28px; letter-spacing:-.025em; font-weight:650; margin:50px 0 12px; }
+  p, li { color:var(--ink2); }
+  .tw { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; font-size:15px; }
+  th, td { text-align:left; padding:10px 12px; border-top:1px solid var(--line); vertical-align:top; }
+  th { background:var(--ink); color:var(--paper); font:500 11px "JetBrains Mono", monospace; letter-spacing:.08em; text-transform:uppercase; border:0; }
+  td b { color:var(--ink); }
+  .call { background:var(--accent); border:1px solid var(--ink); box-shadow:4px 4px 0 var(--ink); padding:18px 20px; margin-top:26px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-top:18px; }
+  .stat { background:var(--card); border:1px solid var(--line); border-radius:14px; box-shadow:0 10px 30px -18px rgba(0,0,0,.35); padding:14px 16px; }
+  .stat .n { font-size:34px; font-weight:700; letter-spacing:-.03em; color:var(--ink); }
+  .stat .s { font-size:14px; color:var(--ink2); }
+  .stat .src { font:400 11px "JetBrains Mono", monospace; color:var(--muted); margin-top:6px; }
+  a { color:var(--ink); }
+  small { color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="aurora" style="height:0"></div>
+<main>
+  <div class="label">Signoff · market brief · Flip the Switch Hackathon, Nov 2026</div>
+  <h1>Agents can watch the data. People still have to own the decision.</h1>
+  <p>Signoff is a pattern, shown on Citi Bike rebalancing. Agents detect data incidents and prepare the fix in the team's chat. A named owner signs off in the same thread. The decisions that depend on the data are gated on the outcome. Switch supplies the room, the roles and the sign-off gate.</p>
+
+  <h2>The problem, in numbers</h2>
+  <div class="stats">
+    <div class="stat"><div class="n">47 · 9 · 27</div><div class="s">Citi Bike stations with 1970 timestamps, over capacity, and silent for a day, on our first pull of the live feed</div><div class="src">Signoff, 7 Nov 2026</div></div>
+    <div class="stat"><div class="n">31%</div><div class="s">of revenue affected by data quality issues, on average; ~15 h to resolve each incident</div><div class="src">Monte Carlo survey, 2023</div></div>
+    <div class="stat"><div class="n">75%</div><div class="s">of data teams take 4+ hours just to detect an incident</div><div class="src">Monte Carlo survey, 2022</div></div>
+    <div class="stat"><div class="n">92%</div><div class="s">of high-stakes AI projects hit data cascades</div><div class="src">Sambasivan et al., CHI 2021</div></div>
+    <div class="stat"><div class="n">$12.9M</div><div class="s">average yearly cost of poor data quality per organisation</div><div class="src">Gartner, reference-customer survey</div></div>
+    <div class="stat"><div class="n">40%+</div><div class="s">of agentic AI projects expected to be cancelled by end-2027 (costs, value, risk controls)</div><div class="src">Gartner, June 2025</div></div>
+  </div>
+
+  <h2>Who feels it</h2>
+  <p>Any team that acts on operational data within minutes, not days: <b>micromobility and fleet operations</b> (rebalancing, charging, dispatch), <b>logistics</b> (slotting, routing), <b>fintech operations</b> (reconciliation, payouts), <b>retail</b> (pricing, inventory), <b>energy and utilities</b> (outage and load data). The pattern is always the same: a feed or table goes bad, an alert reaches an engineer's channel, and the people deciding keep deciding on it.</p>
+  <p>Citi Bike alone ran <b>46.6 million rides in 2025</b> across ~2,500 stations. Its rebalancing optimisation was published at AAAI 2015 and put into daily use. GBFS, the feed format, is published by 1,000+ shared-mobility systems worldwide.</p>
+
+  <h2>Market</h2>
+  <div class="tw"><table>
+    <tr><th>Segment</th><th>Size and growth</th><th>Source</th></tr>
+    <tr><td><b>Data observability</b></td><td>About <b>$2–3 B in 2025</b>, mid-teens CAGR in most forecasts (range across publishers: $1.7–3.5 B, 11–21%)</td><td>Business Research Co., SNS Insider, Spherical Insights, Market Research Future</td></tr>
+    <tr><td><b>AI agents in the workplace</b></td><td>By 2028, Gartner expects 15% of day-to-day work decisions to be made autonomously by agents (from 0% in 2024), and 40%+ of today's agentic projects to be cancelled first</td><td>Gartner, 2025</td></tr>
+    <tr><td><b>Regulation</b></td><td>EU AI Act Article 14 makes human oversight (understand, override, stop) a design requirement for high-risk systems, phasing in from 2026–2028</td><td>Regulation (EU) 2024/1689</td></tr>
+  </table></div>
+  <p><small>Market-size figures come from commercial research publishers with different scopes. Treat them as an order of magnitude, not a forecast.</small></p>
+
+  <h2>Landscape</h2>
+  <div class="tw"><table>
+    <tr><th>Category</th><th>Examples</th><th>What they do well</th><th>What's missing</th></tr>
+    <tr><td><b>Data observability</b></td><td>Monte Carlo, Soda / Sodabase, Anomalo, Bigeye, Great Expectations</td><td>Detect stale, empty and wrong data; alert</td><td>The alert stops at an engineer. No decision step, and nothing gates the consumers</td></tr>
+    <tr><td><b>Incident management</b></td><td>PagerDuty, incident.io, Rootly</td><td>Coordinate people in Slack around an incident, with postmortems</td><td>Built for service outages. Agents don't propose data remediations, and nothing gates downstream answers</td></tr>
+    <tr><td><b>Chat assistants</b></td><td>Slack AI, Microsoft Copilot agents</td><td>Answer questions in chat</td><td>Answer from whatever data they're given, with no trust state and no owner sign-off</td></tr>
+    <tr><td><b>Signoff on Switch</b></td><td>this project</td><td>Agents detect, propose with a preview, verify and write up. A named owner signs off, enforced by Switch. Downstream answers are gated on the result</td><td>One data owner and one feed today (see roadmap)</td></tr>
+  </table></div>
+
+  <h2>Research it rests on</h2>
+  <div class="tw"><table>
+    <tr><th>Idea</th><th>Where it shows up in Signoff</th><th>Source</th></tr>
+    <tr><td><b>Levels of automation</b>: the machine suggests, the human approves</td><td>The fixer proposes and executes only on sign-off (Sheridan's level 5); detection and verification are automatic</td><td>Parasuraman, Sheridan & Wickens, IEEE SMC-A 2000</td></tr>
+    <tr><td><b>Appropriate reliance</b>: trust should match reliability</td><td>The analyst says "untrusted", "caveated" or "trusted", with reasons, instead of always sounding sure</td><td>Lee & See, Human Factors 2004</td></tr>
+    <tr><td><b>Human-AI guidelines</b>: explain why, support correction, scope by context</td><td>Every proposal shows why and what changes; reject offers the alternative; caveats name the incident</td><td>Amershi et al., CHI 2019</td></tr>
+    <tr><td><b>Data validation as code</b></td><td>A written, tested contract; rejected rows quarantined with a reason; constraints repeated in the database</td><td>Breck et al., MLSys 2019; Schelter et al., PVLDB 2018</td></tr>
+    <tr><td><b>Data cascades</b></td><td>Bad data is stopped before the dispatch decision, not discovered after the truck has left</td><td>Sambasivan et al., CHI 2021</td></tr>
+  </table></div>
+
+  <h2>How it could make money</h2>
+  <ul>
+    <li><b>Open core on Switch.</b> The rooms, roles and agents are free and self-hosted. A paid tier adds connectors (warehouses, dbt, Snowflake), two-person sign-off, rule expiry and audit export.</li>
+    <li><b>Per data owner, not per seat.</b> Value scales with the number of datasets that have a named owner and a gate.</li>
+    <li><b>Wedge:</b> operations teams in mobility and logistics, where a wrong decision has a visible cost (a truck, a crew, a missed delivery) within the hour.</li>
+  </ul>
+
+  <div class="call"><b>The bet:</b> the next data-quality product isn't a better alert. It puts the incident, the evidence, the decision and the person who decides in the room where the work happens, and makes every consumer of the data respect the outcome.</div>
+
+  <h2>Sources</h2>
+  <p><small>
+  Monte Carlo, <a href="https://www.businesswire.com/news/home/20230502005377/en/Data-Downtime-Nearly-Doubled-Year-Over-Year-Monte-Carlo-Survey-Says">State of Data Quality 2023</a> and the <a href="https://itprotoday.com/it-management/bad-data-impacting-organizations-resources-revenue">2022 survey</a> ·
+  N. Sambasivan et al., <a href="https://doi.org/10.1145/3411764.3445518">Data Cascades in High-Stakes AI</a>, CHI 2021 ·
+  Gartner, <a href="https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027">agentic AI projects</a>, June 2025; cost of poor data quality ($12.9 M, reference-customer survey) ·
+  <a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-14">EU AI Act, Article 14</a> ·
+  E. O'Mahony & D. Shmoys, <a href="https://ojs.aaai.org/index.php/AAAI/article/view/9245">Data Analysis and Optimization for (Citi)Bike Sharing</a>, AAAI 2015 ·
+  <a href="https://en.wikipedia.org/wiki/Citi_Bike">Citi Bike</a> and <a href="https://citibikenyc.com/system-data/operating-reports">monthly operating reports</a> ·
+  MobilityData, <a href="https://github.com/MobilityData/gbfs">GBFS</a> ·
+  R. Parasuraman, T. Sheridan, C. Wickens, <a href="https://doi.org/10.1109/3468.844354">Types and levels of human interaction with automation</a>, 2000 ·
+  J. Lee & K. See, <a href="https://doi.org/10.1518/hfes.46.1.50_30392">Trust in Automation</a>, 2004 ·
+  S. Amershi et al., <a href="https://doi.org/10.1145/3290605.3300233">Guidelines for Human-AI Interaction</a>, CHI 2019 ·
+  E. Breck et al., <a href="https://mlsys.org/Conferences/2019/doc/2019/167.pdf">Data Validation for Machine Learning</a>, MLSys 2019 ·
+  S. Schelter et al., <a href="https://www.vldb.org/pvldb/vol11/p1781-schelter.pdf">Automating Large-Scale Data Quality Verification</a>, PVLDB 2018 ·
+  Data observability market: <a href="https://www.snsinsider.com/reports/data-observability-market-6375">SNS Insider</a>, <a href="https://www.sphericalinsights.com/reports/data-observability-market">Spherical Insights</a>, <a href="https://www.gii.tw/report/tbrc1727785-data-observability-global-market-report.html">The Business Research Company</a>
+  </small></p>
+</main>
+</body>
+</html>

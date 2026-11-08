@@ -1,0 +1,18 @@
+{
+  "name": "signoff",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A Switch room where AI agents catch bad data and people sign off on the fix, on live Citi Bike data.",
+  "type": "module",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "switch:up": "docker compose -f switch/docker-compose.yml --env-file switch/.env --profile collab --profile gateway up -d",
+    "switch:down": "docker compose -f switch/docker-compose.yml --env-file switch/.env --profile collab --profile gateway down",
+    "init-env": "node scripts/init-env.mjs",
+    "bootstrap": "node scripts/bootstrap.mjs",
+    "start": "node agents/run.mjs",
+    "inject": "node scripts/inject.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "license": "MIT"
+}

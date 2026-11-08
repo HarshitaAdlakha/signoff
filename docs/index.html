@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signoff</title>
+<meta name="description" content="AI agents catch bad data in the team chat. A person signs off on the fix. Built on Switch for the Flip the Switch Hackathon.">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/signoff.css">
+<style>
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 16px; }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; gap: 12px; flex-wrap: wrap; }
+  nav .brand { font: 600 18px "Inter Tight"; letter-spacing: -.02em; text-decoration: none; }
+  nav .links { display: flex; gap: 8px; flex-wrap: wrap; }
+  .hero { text-align: center; padding: 40px 0 70px; }
+  .hero h1 { font-size: clamp(64px, 14vw, 168px); margin-top: 34px; }
+  .hero p.sub { font-size: clamp(22px, 3.2vw, 34px); line-height: 1.2; letter-spacing: -.02em; color: var(--ink); max-width: 860px; margin: 22px auto 0; font-weight: 500; }
+  .hero .cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .term.hero-t { display: inline-block; text-align: left; max-width: 560px; width: 100%; }
+  section { padding: 64px 0; }
+  h2.display { font-size: clamp(38px, 6vw, 72px); margin: 10px 0 18px; }
+  .lead { font-size: 19px; max-width: 760px; color: var(--ink2); }
+  .canvas { position: relative; border: 1px solid var(--line); border-radius: 22px; padding: 22px; overflow: hidden; }
+  .flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 26px; position: relative; }
+  .flow .node .body { font-size: 15px; }
+  .flow .node::before, .flow .node::after { top: 20px; }
+  .flow .node + .node::marker { display: none; }
+  .wire { position: absolute; top: 24px; height: 2px; background: #a5a7ad; }
+  .gate { border: 2px solid var(--ink) !important; box-shadow: 4px 4px 0 var(--lime), 4px 4px 0 1.5px var(--ink) !important; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .shot { display: block; width: 100%; border-radius: 0 0 13px 13px; border-top: 1px solid var(--line); }
+  .stat .n { font-size: 46px; font-weight: 600; letter-spacing: -.04em; line-height: 1; padding: 4px 14px 0; }
+  .stat .src { font: 400 11px "JetBrains Mono"; color: var(--muted); padding: 0 14px 12px; }
+  .verdicts { display: grid; gap: 10px; }
+  .vd { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--line); background: var(--node); }
+  .dot { width: 11px; height: 11px; border-radius: 50%; margin-top: 7px; flex: none; }
+  video { width: 100%; border-radius: 0 0 13px 13px; display: block; background: #000; }
+  footer { padding: 40px 0 70px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 860px) { .flow { grid-template-columns: 1fr; } .wire { display: none; } .grid2, .grid3 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="aurora">
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#">Signoff</a>
+      <div class="links">
+        <a class="pill ghost" href="app/">Live replay</a>
+        <a class="pill ghost" href="#workflow">Workflow</a>
+        <a class="pill ghost" href="#switch">Why Switch</a>
+        <a class="pill ghost" href="market-brief.html">Market brief</a>
+        <a class="pill" href="https://github.com/ParasAdlakha/signoff">GitHub</a>
+      </div>
+    </nav>
+    <div class="hero">
+      <div class="term hero-t">
+        <div class="bar"><span>7 Nov 2026 · live Citi Bike feed</span><span>#data-incidents</span></div>
+        <div class="in">watcher › run #1: 2,520 stations
+47 report a last update in 1970 → INC-001
+@remediator please propose a remediation</div>
+      </div>
+      <h1 class="display">Signoff</h1>
+      <p class="sub">AI agents catch bad data in the team chat. A person signs off on the fix. Nothing downstream acts on data nobody trusts.</p>
+      <div class="cta">
+        <a class="pill lime" href="app/">▶ Open the live replay</a>
+        <a class="pill" href="#demo">Watch the demo (2½ min)</a>
+        <a class="pill" href="https://github.com/ParasAdlakha/signoff">Run it yourself</a>
+        <a class="pill ghost" href="slides/Signoff-slides.pdf">Slides</a>
+      </div>
+      <p class="label" style="margin-top:26px">Flip the Switch Hackathon · Track 01 · Best Business Workflow · Paras Adlakha & Harshita Adlakha</p>
+    </div>
+  </div>
+</div>
+
+<div class="dots">
+<div class="wrap">
+  <section id="workflow" style="padding-top:40px">
+    <div class="label">The workflow</div>
+    <h2 class="display">Detect → propose → sign off → verify → gate.</h2>
+    <p class="lead">Two Switch rooms in Mattermost, four agents and two people. Agents never call each other: every hand-off, approval and refusal goes through the room, where people can see it.</p>
+    <div class="canvas" style="margin-top:26px">
+      <div class="flow">
+        <div class="node"><span class="label">Agent · @monitor</span><div class="body"><b>Watcher</b> runs a 12-rule contract on the live feed every minute and opens one thread per incident, with evidence.</div></div>
+        <div class="node"><span class="label">Agent · @remediator</span><div class="body"><b>Fixer</b> proposes a remediation, previews exactly what changes, and asks the data owner.</div></div>
+        <div class="node gate"><span class="label">Person · data owner</span><div class="body"><code>@fixer approve INC-001</code>. Anyone else is <b>refused by Switch</b>.</div></div>
+        <div class="node"><span class="label">Agent · @recorder</span><div class="body"><b>Watcher</b> verifies on the next run and closes; <b>scribe</b> writes the postmortem document.</div></div>
+        <div class="node"><span class="label">Agent · @dispatch-analyst</span><div class="body"><b>Analyst</b> reads <code>data-status</code> before every dispatch answer.</div></div>
+      </div>
+    </div>
+    <div class="grid3" style="margin-top:22px">
+      <div class="vd"><span class="dot" style="background:var(--untrusted)"></span><div><b>Untrusted</b>: "🛑 I won't send a truck on this data", with the reasons.</div></div>
+      <div class="vd"><span class="dot" style="background:var(--caveated)"></span><div><b>Caveated</b>: the answer, with every open incident named.</div></div>
+      <div class="vd"><span class="dot" style="background:var(--trusted)"></span><div><b>Trusted</b>: the answer, every station cited [n].</div></div>
+    </div>
+  </section>
+
+  <section id="demo">
+    <div class="label">Live, on real data</div>
+    <h2 class="display">Three real incidents on the first run.</h2>
+    <p class="lead">On 7 November 2026 the live Citi Bike feed had 47 stations reporting a last update in 1970, 6–9 reporting more bikes than docks, and 27 silent for a day. The frozen feed later in the demo is a simulation, and it's labelled as one.</p>
+    <div class="node noports" style="margin-top:22px"><span class="label">Demo · 2½ minutes · narrated</span><div style="height:10px"></div><video controls preload="metadata" poster="slides/s1.png" src="video/Signoff-demo-2min.mp4"></video></div>
+    <div class="grid2" style="margin-top:22px">
+      <div class="node noports"><span class="label">#data-incidents · the fixer's proposal</span><div style="height:10px"></div><img class="shot" src="img/proposal.png" alt="The fixer's proposal for INC-001 in Mattermost"></div>
+      <div class="node noports"><span class="label">#rebalancing-desk · a caveated answer</span><div style="height:10px"></div><img class="shot" src="img/answer-caveated.png" alt="A caveated answer from the analyst"></div>
+      <div class="node noports"><span class="label">The gate · Switch refuses for the fixer</span><div style="height:10px"></div><img class="shot" src="img/refused.png" alt="Switch refuses an approval from someone who isn't the owner"></div>
+      <div class="node noports"><span class="label">Frozen feed · the analyst refuses</span><div style="height:10px"></div><img class="shot" src="img/refuse-untrusted.png" alt="The analyst refuses to answer on untrusted data"></div>
+    </div>
+  </section>
+
+  <section id="switch">
+    <div class="label">Why Switch is central</div>
+    <h2 class="display">Take Switch away and there's no hand-off, no sign-off, no gate.</h2>
+    <div class="grid3" style="margin-top:22px">
+      <div class="term"><div class="bar"><span>rooms → mattermost</span></div><div class="in">create_room(people, agents,
+  instructions, roles, links)</div></div>
+      <div class="term"><div class="bar"><span>roles, exclusive</span></div><div class="in">send_targeted_message(
+  target_roles=["remediator"])</div></div>
+      <div class="term"><div class="bar"><span>the sign-off gate</span></div><div class="in">fixer.addressing =
+  "owner_and_owner_agents"</div></div>
+      <div class="term"><div class="bar"><span>shared state</span></div><div class="in">room documents:
+data-status · incident-log
+postmortem-INC-00x</div></div>
+      <div class="term"><div class="bar"><span>threads · links</span></div><div class="in">one incident = one thread
+desk ⇄ incidents, labelled</div></div>
+      <div class="term"><div class="bar"><span>agent protocol, no SDK</span></div><div class="in">WebSocket events, ping/pong,
+resume · HTTP operations</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="label">Why it matters</div>
+    <h2 class="display">Bad data is expensive, and invisible to the people deciding.</h2>
+    <div class="grid3" style="margin-top:22px">
+      <div class="node stat noports"><span class="label">Revenue</span><div class="n">31%</div><div class="body">affected by data quality issues on average; ~15 h per incident</div><div class="src">Monte Carlo, 2023</div></div>
+      <div class="node stat noports"><span class="label">Data cascades</span><div class="n">92%</div><div class="body">of high-stakes AI projects hit compounding downstream harm</div><div class="src">Sambasivan et al., CHI 2021</div></div>
+      <div class="node stat noports"><span class="label">Agentic AI</span><div class="n">40%+</div><div class="body">of agentic AI projects expected to be cancelled by 2027, partly for weak risk controls</div><div class="src">Gartner, 2025</div></div>
+    </div>
+    <p class="lead" style="margin-top:18px"><a href="market-brief.html">Read the market brief →</a></p>
+  </section>
+
+  <section>
+    <div class="label">Run it yourself · Docker + Node 22</div>
+    <h2 class="display">Five commands. No workspace, no key.</h2>
+    <div class="term" style="margin-top:18px"><div class="bar"><span>terminal</span><span>~/signoff</span></div><div class="in">git clone https://github.com/ParasAdlakha/signoff && cd signoff
+npm run init-env     # random secrets
+npm run switch:up    # Switch 0.31 + Postgres + Mattermost
+npm run bootstrap    # agents, addressing, rooms, roles, links
+npm start            # four agents → open http://localhost:8065</div></div>
+  </section>
+</div>
+</div>
+
+<footer>
+  <div class="wrap">Signoff · Paras Adlakha & Harshita Adlakha · MIT · Station data © Citi Bike / Lyft · <a href="blog.md">Blog: building a sign-off room on Switch</a></div>
+</footer>
+</body>
+</html>

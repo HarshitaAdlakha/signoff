@@ -1,0 +1,30 @@
+// A small gazetteer of places dispatchers name, so "bikes near Union Square" needs no geocoding API.
+export const PLACES = {
+  'bryant park': [40.7536, -73.9832], 'times square': [40.758, -73.9855], 'grand central': [40.7527, -73.9772],
+  'penn station': [40.7506, -73.9935], 'union square': [40.7359, -73.9911], 'midtown': [40.7549, -73.984],
+  'chelsea': [40.7465, -74.0014], 'soho': [40.7233, -74.003], 'wall street': [40.7064, -74.0094],
+  'fidi': [40.7075, -74.0113], 'financial district': [40.7075, -74.0113], 'lower east side': [40.715, -73.9843],
+  'east village': [40.7265, -73.9815], 'west village': [40.7358, -74.0036], 'upper east side': [40.7736, -73.9566],
+  'upper west side': [40.787, -73.9754], 'harlem': [40.8116, -73.9465], 'williamsburg': [40.7081, -73.9571],
+  'downtown brooklyn': [40.6928, -73.9903], 'dumbo': [40.7033, -73.9881], 'long island city': [40.7447, -73.9485],
+  'hoboken': [40.7369, -74.0294], 'jersey city': [40.7178, -74.0431], 'columbus circle': [40.7681, -73.9819],
+  'hudson yards': [40.7538, -74.0012], 'battery park': [40.7033, -74.017], 'astoria': [40.7644, -73.9235],
+  'greenpoint': [40.7305, -73.9515], 'park slope': [40.671, -73.9814], 'flatiron': [40.7411, -73.9897],
+  'murray hill': [40.7479, -73.9757], 'tribeca': [40.7163, -74.0086], 'central park': [40.7712, -73.9742],
+  'rockefeller center': [40.7587, -73.9787], 'koreatown': [40.7479, -73.9867], 'gramercy': [40.7368, -73.9845],
+};
+
+export function findPlace(text = '') {
+  const t = text.toLowerCase();
+  let best = null;
+  for (const [name, ll] of Object.entries(PLACES)) if (t.includes(name) && (!best || name.length > best.name.length)) best = { name, ll };
+  return best;
+}
+
+export function distanceM([lat1, lon1], [lat2, lon2]) {
+  const R = 6371000, toR = (d) => (d * Math.PI) / 180;
+  const a = Math.sin(toR(lat2 - lat1) / 2) ** 2 + Math.cos(toR(lat1)) * Math.cos(toR(lat2)) * Math.sin(toR(lon2 - lon1) / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+export const titleCase = (s) => s.replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bFidi\b/, 'FiDi').replace(/\bSoho\b/, 'SoHo').replace(/\bDumbo\b/, 'DUMBO');
