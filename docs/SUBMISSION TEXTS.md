@@ -18,7 +18,9 @@ Copy-ready answers for the Flip the Switch submission, the live demo script, the
 
 **Demo video:** https://github.com/ParasAdlakha/signoff/blob/main/docs/video/Signoff-demo-2min.mp4
 
-**Live replay:** https://parasadlakha.github.io/signoff/app/
+**Live app (in the browser, today's Citi Bike feed):** https://parasadlakha.github.io/signoff/live/
+
+**Live replay of the recorded Switch session:** https://parasadlakha.github.io/signoff/app/
 
 **Project page:** https://parasadlakha.github.io/signoff/
 

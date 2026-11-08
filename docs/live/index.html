@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signoff live</title>
+<meta name="description" content="Signoff live: the real data contract, sign-off and trust gate, running in your browser on the live Citi Bike feed.">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/signoff.css">
+<style>
+  body { min-height: 100vh; }
+  .wrap { max-width: 1320px; margin: 0 auto; padding: 0 16px 60px; }
+  header { padding: 18px 0 8px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  header a.brand { font: 600 18px "Inter Tight"; letter-spacing: -.02em; text-decoration: none; }
+  .hero { padding: 22px 0 14px; }
+  .hero h1 { font-size: clamp(40px, 7vw, 84px); }
+  .hero p { max-width: 860px; color: var(--ink2); font-size: 18px; }
+  .note { font-size: 14px; color: var(--ink2); background: var(--node); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; max-width: 860px; }
+  .bar { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 14px; margin: 14px 0 18px;
+         background: color-mix(in srgb, var(--node) 88%, transparent); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 16px; }
+  .bar button, .acts button, .chips button { cursor: pointer; }
+  .pill { font-size: 14px; }
+  .pill:disabled { opacity: .45; cursor: default; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--node); }
+  .seg button { border: 0; background: transparent; color: var(--ink2); font: 500 13px "Inter Tight"; padding: 7px 12px; border-radius: 999px; }
+  .seg button.on { background: var(--ink); color: var(--canvas); }
+  .trust { display: inline-flex; align-items: center; gap: 8px; font: 600 14px "JetBrains Mono"; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--node); }
+  .trust .d { width: 10px; height: 10px; border-radius: 50%; }
+  #runinfo { font: 500 12px "JetBrains Mono"; color: var(--muted); }
+  #err { color: var(--untrusted); font-size: 13px; flex-basis: 100%; }
+  #err:empty { display: none; }
+  .rooms { display: grid; grid-template-columns: 1.15fr 1fr; gap: 18px; }
+  .room { display: flex; flex-direction: column; min-height: 560px; max-height: 80vh; }
+  .room .head { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 18px 10px; border-bottom: 1px solid var(--line); gap: 10px; flex-wrap: wrap; }
+  .room .head h2 { margin: 0; font: 600 20px "JetBrains Mono"; }
+  .room .feed { overflow-y: auto; padding: 12px 14px 18px; flex: 1; }
+  .msg { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 8px 6px; border-radius: 10px; animation: in .35s ease; }
+  .msg.reply { margin-left: 38px; border-left: 2px solid var(--line); border-radius: 0 10px 10px 0; padding-left: 10px; }
+  .msg.new { background: color-mix(in srgb, var(--lime) 28%, transparent); }
+  @keyframes in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .av { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font: 600 13px "JetBrains Mono"; color: #0b0b0c; }
+  .who { font-weight: 600; font-size: 14px; }
+  .tag, .time { font: 500 10px "JetBrains Mono"; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-left: 6px; }
+  .txt { font-size: 14.5px; line-height: 1.5; color: var(--ink2); overflow-wrap: anywhere; }
+  .txt b { color: var(--ink); }
+  .txt code { font-size: 12.5px; background: color-mix(in srgb, var(--line) 60%, transparent); padding: 1px 5px; border-radius: 4px; }
+  .txt .q { border-left: 3px solid var(--line); padding-left: 10px; color: var(--muted); margin: 4px 0; }
+  .txt ul { margin: 4px 0; padding-left: 18px; }
+  .acts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .acts .pill { font-size: 13px; padding: 7px 13px; }
+  .empty { color: var(--muted); font-size: 14px; padding: 20px 8px; }
+  .ask { border-top: 1px solid var(--line); padding: 12px 14px; display: grid; gap: 10px; }
+  .ask form { display: flex; gap: 8px; }
+  .ask input { flex: 1; min-width: 0; font: 15px "Inter Tight"; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--canvas); color: var(--ink); }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chips button { font: 500 12px "Inter Tight"; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--line); background: var(--node); color: var(--ink2); }
+  .foot { color: var(--muted); font-size: 13px; margin-top: 18px; }
+  @media (max-width: 900px) { .rooms { grid-template-columns: 1fr; } .room { max-height: none; min-height: 0; } .room .feed { max-height: 70vh; } .msg.reply { margin-left: 18px; } }
+</style>
+</head>
+<body>
+<div class="aurora"><div class="wrap">
+  <header>
+    <a class="brand" href="../">Signoff</a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="pill ghost" href="../app/">Replay of the Switch session</a>
+      <a class="pill ghost" href="../">Project page</a>
+      <a class="pill" href="https://github.com/ParasAdlakha/signoff">GitHub</a>
+    </div>
+  </header>
+  <div class="hero">
+    <div class="label">Live app · running in your browser now</div>
+    <h1 class="display">Sign off on today's data.</h1>
+    <p>This page pulls the live Citi Bike feed every minute and runs Signoff's own data contract, remediation options and trust gate on it: the same modules the agents run. Whatever is wrong with the feed right now becomes an incident. You decide the fix as Paras, or try as Harshita and get refused. Then ask the analyst where to send a truck.</p>
+    <p class="note">In the full system these agents are separate Switch agents talking through two Switch rooms in Mattermost, and Switch's addressing policy enforces the sign-off. Here the two rooms are drawn in the page so anyone can try it without installing anything. <a href="https://github.com/ParasAdlakha/signoff#run-it-yourself">Run the real Switch version</a> with five commands, or watch the <a href="../app/">replay of a recorded Switch session</a>.</p>
+  </div>
+</div></div>
+
+<div class="wrap">
+  <div class="bar" role="region" aria-label="Live controls">
+    <span class="seg" role="group" aria-label="Who you are"><button data-role="paras">You are Paras · data owner</button><button data-role="harshita">Harshita · dispatch lead</button></span>
+    <span class="trust" id="trust"><span class="d" style="background:var(--muted)"></span><span>checking…</span></span>
+    <button class="pill ghost" id="run">Run the watcher now</button>
+    <button class="pill ghost" id="freeze">⚗️ Simulate a frozen feed</button>
+    <span id="runinfo">first run…</span>
+    <div id="err"></div>
+  </div>
+
+  <div class="rooms">
+    <section class="node noports room"><div class="head"><h2>#data-incidents</h2><span class="label">watcher · fixer · scribe · Paras · Harshita</span></div>
+      <div class="feed" id="f-incidents"><div class="empty">The watcher is pulling the live feed…</div></div></section>
+    <section class="node noports room"><div class="head"><h2>#rebalancing-desk</h2><span class="label">analyst · watcher · Harshita · Paras</span></div>
+      <div class="feed" id="f-desk"><div class="empty">Ask the analyst where to send a truck.</div></div>
+      <div class="ask">
+        <form id="askform"><input id="q" list="places" placeholder="@analyst which stations near Union Square need bikes?" aria-label="Ask the analyst"><button class="pill lime" type="submit">Ask</button></form>
+        <datalist id="places"></datalist>
+        <div class="chips">
+          <button data-q="which stations near Union Square need bikes?">Bikes near Union Square</button>
+          <button data-q="full docks near Grand Central, where do we pick up?">Full docks near Grand Central</button>
+          <button data-q="where do I drop bikes near Williamsburg?">Bikes near Williamsburg</button>
+          <button data-q="can I trust the data right now?">Can I trust the data?</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="foot">Live data: Citi Bike GBFS (station_information, station_status), © Lyft / Citi Bike, used under the Citi Bike Data License Agreement. Nothing you do here is saved; refresh to start over. Code: <a href="https://github.com/ParasAdlakha/signoff/tree/main/docs/live">docs/live</a>, with the shared modules synced from <a href="https://github.com/ParasAdlakha/signoff/tree/main/agents/lib">agents/lib</a>.</p>
+  <p class="foot">Thank you to WeMakeDevs (Kunal Kushwaha and the team), DevTools Academy and the Switch team at SandboxAQ for hosting Flip the Switch, to Wispr, and to the mentors, judges and Discord community.</p>
+</div>
+<script type="module" src="live.mjs"></script>
+</body>
+</html>

@@ -12,6 +12,7 @@
     "bootstrap": "node scripts/bootstrap.mjs",
     "start": "node agents/run.mjs",
     "inject": "node scripts/inject.mjs",
+    "sync-web": "node scripts/sync-web.mjs",
     "test": "node --test test/*.test.mjs"
   },
   "license": "MIT"

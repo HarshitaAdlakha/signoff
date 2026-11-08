@@ -8,13 +8,14 @@ It isn't hypothetical. On its first pull of the live feed on 7 November 2026, th
 
 Built by **Paras Adlakha** and **Harshita Adlakha** for the **Flip the Switch Hackathon** (WeMakeDevs × DevTools Academy × Switch, 4–7 November 2026), **Track 01: Best Business Workflow**.
 
-**▶️ [Open the live replay](https://parasadlakha.github.io/signoff/app/)** · **🎬 [Demo (2½ min)](docs/video/Signoff-demo-2min.mp4)** · [3½-minute pitch](docs/video/Signoff-pitch-3min.mp4) · **📑 [Slides (PDF)](docs/slides/Signoff-slides.pdf)** · [PowerPoint](docs/slides/Signoff-slides.pptx) · [Project page](https://parasadlakha.github.io/signoff/) · [Market brief](https://parasadlakha.github.io/signoff/market-brief.html) · [Blog](docs/blog.md)
+**🟢 [Open the live app](https://parasadlakha.github.io/signoff/live/)** · **▶️ [Live replay](https://parasadlakha.github.io/signoff/app/)** · **🎬 [Demo (2½ min)](docs/video/Signoff-demo-2min.mp4)** · [3½-minute pitch](docs/video/Signoff-pitch-3min.mp4) · **📑 [Slides (PDF)](docs/slides/Signoff-slides.pdf)** · [PowerPoint](docs/slides/Signoff-slides.pptx) · [Project page](https://parasadlakha.github.io/signoff/) · [Market brief](https://parasadlakha.github.io/signoff/market-brief.html) · [Blog](docs/blog.md)
 
 ## 📌 Quick links
 
 | What | Link |
 |---|---|
-| ▶️ **Live replay** of a real session, step by step (GitHub Pages) | https://parasadlakha.github.io/signoff/app/ |
+| 🟢 **Live app**: the real contract, sign-off and trust gate on today's Citi Bike feed, in your browser | https://parasadlakha.github.io/signoff/live/ |
+| ▶️ **Live replay** of a recorded Switch session, step by step | https://parasadlakha.github.io/signoff/app/ |
 | 🌐 Project page | https://parasadlakha.github.io/signoff/ |
 | 🎬 Demo video (2½ min, narrated) | [Signoff-demo-2min.mp4](docs/video/Signoff-demo-2min.mp4) |
 | 🎤 Pitch video (3½ min) | [Signoff-pitch-3min.mp4](docs/video/Signoff-pitch-3min.mp4) |
@@ -32,6 +33,14 @@ Built by **Paras Adlakha** and **Harshita Adlakha** for the **Flip the Switch Ha
 ![The rebalancing desk: a caveated answer that names every open incident](docs/img/answer-caveated.png)
 
 *`#rebalancing-desk`. Harshita asks the analyst for stations short of bikes near Union Square. It checks the room's `data-status` document first, answers with five cited stations, names the three open incidents, and says how many nearby stations it left out.*
+
+### 🟢 The live app (no setup needed)
+
+[**parasadlakha.github.io/signoff/live**](https://parasadlakha.github.io/signoff/live/) runs Signoff in your browser on the **live Citi Bike feed, right now**. Every minute it pulls the feed and runs the agents' own data contract, remediation options and trust gate. Those are the same modules, synced from [`agents/lib`](agents/lib) by `npm run sync-web`. Whatever is wrong with the feed today opens an incident. You decide the fix as Paras, the data owner; switch to Harshita and your approval is refused. Then ask the analyst where to send a truck, or simulate a frozen feed and watch it refuse.
+
+In the full system the four agents are separate Switch agents talking through two Switch rooms, and Switch's addressing policy enforces the sign-off. The live app draws the two rooms in the page so anyone can try the workflow without installing anything, and it says so on the page.
+
+![The live app: today's incidents, Paras's sign-off and a trusted answer, on the live feed](docs/img/live.png)
 
 ### ▶️ The live replay (no setup needed)
 
@@ -58,9 +67,9 @@ Built by **Paras Adlakha** and **Harshita Adlakha** for the **Flip the Switch Ha
 | Criterion | Signoff |
 |---|---|
 | **Switch is central** | Agents only talk to each other and to people through two Switch rooms. Hand-offs go to **roles** (`@remediator`, `@monitor`, `@recorder`), not to names. The sign-off gate is Switch's **addressing policy**. The trust state and the postmortems are Switch **room documents**. The rooms are **linked** so agents know where incidents live. Take Switch away and there's no hand-off, no approval and no gate ([details](#why-switch-is-central)) |
-| **Technical execution** | Four agents speak the Switch agent protocol directly (WebSocket events, HTTP operations), with no SDK and no npm dependencies. The Switch server, Postgres and Mattermost run from one Compose file pinned to Switch 0.31.0. 18 tests. Reproduced from an empty machine state with the five commands under [Run it yourself](#run-it-yourself) |
+| **Technical execution** | Four agents speak the Switch agent protocol directly (WebSocket events, HTTP operations), with no SDK and no npm dependencies. The Switch server, Postgres and Mattermost run from one Compose file pinned to Switch 0.31.0. 19 tests. Reproduced from an empty machine state with the five commands under [Run it yourself](#run-it-yourself) |
 | **Creativity and impact** | Data-quality alerts usually go to an engineer's channel and wait there. Signoff puts the incident, the decision and the person who decides in the same room, and gates the downstream answer on the outcome. Shown on a real public feed with real defects |
-| **Presentation** | This README, a [live replay](https://parasadlakha.github.io/signoff/app/), a [2½-minute demo](docs/video/Signoff-demo-2min.mp4), a [3½-minute pitch](docs/video/Signoff-pitch-3min.mp4), [slides](docs/slides/Signoff-slides.pdf), a [project page](https://parasadlakha.github.io/signoff/), a [market brief](docs/market-brief.html) and a [blog post](docs/blog.md) |
+| **Presentation** | This README, a [live app](https://parasadlakha.github.io/signoff/live/) on today's feed, a [live replay](https://parasadlakha.github.io/signoff/app/) of the Switch session, a [2½-minute demo](docs/video/Signoff-demo-2min.mp4), a [3½-minute pitch](docs/video/Signoff-pitch-3min.mp4), [slides](docs/slides/Signoff-slides.pdf), a [project page](https://parasadlakha.github.io/signoff/), a [market brief](docs/market-brief.html) and a [blog post](docs/blog.md) |
 
 ---
 
@@ -310,7 +319,7 @@ From the recorded session on 7 November 2026 (local Switch 0.31.0, live Citi Bik
 | Detection → proposal posted | under 2 s per incident |
 | Sign-off → verified and closed | one watcher run (20 s in the recording, 60 s by default) |
 | Analyst answer, end to end | about 0.4 s in the agent; Mattermost round trip on top |
-| Tests | 18, all passing |
+| Tests | 19, all passing |
 
 ---
 
@@ -320,7 +329,7 @@ From the recorded session on 7 November 2026 (local Switch 0.31.0, live Citi Bik
 npm test
 ```
 
-18 tests with Node's built-in runner, no dependencies:
+19 tests with Node's built-in runner, no dependencies:
 
 | File | Covers |
 |---|---|
@@ -377,18 +386,20 @@ agents/
   lib/remediation.mjs     what the fixer can propose, and previews
   lib/pipeline.mjs        one ingest cycle with standing rules
   lib/warehouse.mjs       SQLite schema (node:sqlite): CHECK constraints, quarantine, rules, audit
+  lib/dispatch.mjs        the analyst's trust gate, intent and station picking (pure, tested)
   lib/config.mjs          agents, rooms, instructions, roles, links
   lib/gbfs.mjs            the live feed, and labelled fault simulation
 scripts/
   init-env.mjs            switch/.env with random secrets
   bootstrap.mjs           everything Switch needs, through Switch's own APIs
   inject.mjs              simulate stale / dupes / drop
+  sync-web.mjs            copy the pure modules into docs/live/lib for the live app
   media/                  demo recorder, video, slides (not needed to run Signoff)
 switch/
   docker-compose.yml      Switch's standalone stack, vendored and pinned to 0.31.0
   .env.example
 test/                     18 unit tests
-docs/                     project page, live replay (app/), slides, videos, images, market brief, blog
+docs/                     project page, live app (live/), live replay (app/), slides, videos, images, market brief, blog
 ```
 
 ---
