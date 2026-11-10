@@ -1,0 +1,7 @@
+One-page infographic with VERY LITTLE text: short labels only, no sentences longer than eight words, because every word must be spelled correctly.
+Title (exactly): "Agents watch the data. People own the decision."
+Six steps, one short label each (exactly): "1 Detect", "2 Propose with preview", "3 Owner signs off", "4 Verify", "5 Record postmortem", "6 Gate the answer".
+Three numbers (exactly): "47 stations reported 1970", "6 to 9 over capacity", "27 to 29 silent for a day".
+Three verdicts (exactly): "Trusted", "Caveated", "Untrusted: I won't send a truck".
+Footer credit, spelled exactly: "Signoff by Paras Adlakha & Harshita Adlakha · Systems & Business".
+Style: off-white paper, ink-black retro window frames, mono labels, one accent colour terminal pink.

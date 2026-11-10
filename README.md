@@ -17,6 +17,7 @@ Built by **Paras Adlakha** and **Harshita Adlakha** for the **Flip the Switch Ha
 | 🟢 **Live app**: the real contract, sign-off and trust gate on today's Citi Bike feed, in your browser | https://parasadlakha.github.io/signoff/live/ |
 | ▶️ **Live replay** of a recorded Switch session, step by step | https://parasadlakha.github.io/signoff/app/ |
 | 🌐 Project page | https://parasadlakha.github.io/signoff/ |
+| 🎧 **Podcast and media**: 40-min deep dive, 85-s brief, 8-min explainer, vertical short, infographic, mind map | https://parasadlakha.github.io/signoff/notebooklm/ |
 | 🎬 Demo video (2½ min, narrated) | [Signoff-demo-2min.mp4](docs/video/Signoff-demo-2min.mp4) |
 | 🎤 Pitch video (3½ min) | [Signoff-pitch-3min.mp4](docs/video/Signoff-pitch-3min.mp4) |
 | 🔇 Captioned cut for social (1½ min) | [Signoff-demo-captioned.mp4](docs/video/Signoff-demo-captioned.mp4) |
@@ -41,6 +42,12 @@ Built by **Paras Adlakha** and **Harshita Adlakha** for the **Flip the Switch Ha
 In the full system the four agents are separate Switch agents talking through two Switch rooms, and Switch's addressing policy enforces the sign-off. The live app draws the two rooms in the page so anyone can try the workflow without installing anything, and it says so on the page.
 
 ![The live app: today's incidents, Paras's sign-off and a trusted answer, on the live feed](docs/img/live.png)
+
+### 🎧 Listen and watch
+
+[**parasadlakha.github.io/signoff/notebooklm**](https://parasadlakha.github.io/signoff/notebooklm/) has Signoff as a [40-minute deep-dive podcast](docs/notebooklm/Signoff-podcast-deep-dive.mp3), an [85-second audio brief](docs/notebooklm/Signoff-podcast-brief.m4a), an [8-minute explainer video](docs/notebooklm/Signoff-video-explainer.mp4), a [vertical short](docs/notebooklm/Signoff-short-vertical.mp4), a [slide deck](docs/notebooklm/Signoff-notebooklm-slides.pdf), an infographic, a mind map and a [written briefing](docs/notebooklm/Signoff-briefing.md). They were generated in a Gemini Notebook from this README, the blog, the project page, the market brief, the slides and a brand brief ([sources and prompts](brand/notebooklm)), then checked against those sources.
+
+![Infographic: agents watch the data, people own the decision](docs/notebooklm/Signoff-infographic.png)
 
 ### ▶️ The live replay (no setup needed)
 
@@ -400,7 +407,8 @@ switch/
   docker-compose.yml      Switch's standalone stack, vendored and pinned to 0.31.0
   .env.example
 test/                     19 unit tests
-docs/                     project page, live app (live/), live replay (app/), slides, videos, images, market brief, blog
+docs/                     project page, live app (live/), live replay (app/), podcast and media (notebooklm/), slides, videos, images, market brief, blog
+brand/notebooklm/         sources and prompts for the notebook
 ```
 
 ---

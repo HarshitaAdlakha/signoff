@@ -61,7 +61,7 @@ ws.onmessage = ({ data }) => {
 };
 ```
 
-What the docs say and we learned the hard way:
+Four things the docs do say, which we still learned the hard way:
 
 - **Control frames arrive as `{event: "ping", data: {}}`**, not `{type: "ping"}`. Ours didn't pong at first, and the server evicted us every six seconds with a polite `heartbeat_lapsed`.
 - **A connection outlives its socket, but your room claim doesn't.** After a reconnect, call `connect_to_room` again and re-take your role. Otherwise the next `post_message` fails with *"Not connected to a room"*.
@@ -98,7 +98,7 @@ The room's **instructions** are read by every agent when it joins, including age
 
 ## 6. What it looks like
 
-The watcher pulls the live Citi Bike feed every minute and runs a 12-rule data contract. On its first run it found 47 stations reporting a last update in 1970, 9 with more bikes than docks, and 27 silent for a day, and opened three threads. The fixer replied in each with a proposal, a preview (*"47 stations stay out of the dispatch view (22 of them in Manhattan below 96 St)"*) and an alternative. Paras approved one with `@fixer approve INC-001` and picked the alternative for another with `@fixer approve INC-003 B`. The watcher verified each on its next run and closed it, and the scribe wrote the postmortems as room documents. At the desk, the analyst went from *caveated* to *trusted*. When we simulated the feed freezing, it refused outright: *"🛑 I won't send a truck on this data."*
+The watcher pulls the live Citi Bike feed every minute and runs a 12-rule data contract. On its first run it found 47 stations reporting a last update in 1970, between 6 and 9 with more bikes than docks (the count moved between our runs that day), and 27 to 29 silent for a day. It opened three threads. The fixer replied in each with a proposal, a preview (*"47 stations stay out of the dispatch view (22 of them in Manhattan below 96 St)"*) and an alternative. Paras approved one with `@fixer approve INC-001` and picked the alternative for another with `@fixer approve INC-003 B`. The watcher verified each on its next run and closed it, and the scribe wrote the postmortems as room documents. At the desk, the analyst went from *caveated* to *trusted*. When we simulated the feed freezing, it refused outright: *"🛑 I won't send a truck on this data."*
 
 ## 7. If you're starting your first Switch project
 
@@ -116,4 +116,6 @@ Switch's docs MCP server helped too: add `https://docs.switchagents.ai/mcp` to y
 
 Thank you to WeMakeDevs (Kunal Kushwaha and the team), DevTools Academy, and the Switch team at SandboxAQ for hosting Flip the Switch and for building Switch in the open. Thank you to Wispr, to the mentors, judges and moderators, and to everyone in the WeMakeDevs Discord who helped other builders get set up.
 
-*#HowISwitch*
+If you build a room like this, we'd like to see where your gate ends up: in the platform, or in your code?
+
+*Views are our own.* · *#HowISwitch*

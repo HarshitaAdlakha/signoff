@@ -22,6 +22,8 @@ Copy-ready answers for the Flip the Switch submission, the live demo script, the
 
 **Live replay of the recorded Switch session:** https://parasadlakha.github.io/signoff/app/
 
+**Podcast and media:** https://parasadlakha.github.io/signoff/notebooklm/
+
 **Project page:** https://parasadlakha.github.io/signoff/
 
 **Slides:** https://parasadlakha.github.io/signoff/slides/Signoff-slides.pdf
@@ -74,7 +76,7 @@ Images in order: `docs/img/linkedin-cover.png`, `docs/img/linkedin-incidents.png
 > For the Flip the Switch hackathon, Paras and I built Signoff: AI agents and people working in the same team chat, on Switch, with live Citi Bike data. On its first run, our watcher agent found:
 > → 47 stations reporting their last update in 1970
 > → stations with more bikes than docks
-> → 27 stations silent for over a day
+> → 27 to 29 stations silent for over a day
 >
 > What happens next is the part we care about:
 > 🔎 the watcher opens one thread per incident, with evidence
@@ -87,9 +89,12 @@ Images in order: `docs/img/linkedin-cover.png`, `docs/img/linkedin-incidents.png
 >
 > A huge thank you to WeMakeDevs and Kunal Kushwaha, DevTools Academy, and the Switch team at SandboxAQ for hosting Flip the Switch and for building Switch in the open. Thank you to Wispr, to the mentors, judges and moderators, and to everyone in the Discord who helped each other get set up.
 >
+> Where does your team find out the data was wrong: in the room where you decide, or the morning after?
+>
+> ▶️ Try it on today's live feed: https://harshitaadlakha.github.io/signoff/live/
 > 💻 https://github.com/HarshitaAdlakha/signoff
 >
-> #HowISwitch #AIAgents #DataQuality #Hackathon #WomenInTech #BuildInPublic
+> #HowISwitch #AIAgents #DataQuality #Hackathon #WomenInTech
 
 ## LinkedIn post (Paras, personal)
 
@@ -104,10 +109,13 @@ Images in order: `docs/img/linkedin-cover.png`, `docs/img/linkedin-incidents.png
 > 📄 the trust state is a room document the dispatch analyst reads before every answer
 > 🛑 untrusted data → "I won't send a truck on this data"
 >
-> No SDK, no npm dependencies: the agents speak Switch's WebSocket protocol directly, and the whole stack runs locally with Docker.
+> The agents speak Switch's WebSocket protocol directly, with no SDK and no npm packages, and the whole stack runs locally with Docker.
 >
 > Thank you to WeMakeDevs and Kunal Kushwaha, DevTools Academy, and the Switch team at SandboxAQ for hosting, to Wispr for supporting the event, and to the mentors, judges and the whole Discord community.
 >
+> If you run agents that can change data, where does your sign-off live today: in the platform, in your code, or in someone's head?
+>
+> ▶️ Live on today's Citi Bike feed: https://parasadlakha.github.io/signoff/live/
 > 💻 https://github.com/ParasAdlakha/signoff
 >
 > #HowISwitch #AIAgents #DataEngineering #Switch #Hackathon

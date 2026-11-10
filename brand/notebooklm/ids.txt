@@ -1,0 +1,7 @@
+audio-deep 8bdb2c28-b6e3-4e0e-a4fe-f88b5c81f099 audio Signoff-podcast-deep-dive.m4a
+video b555064e-261f-40e3-a407-69c3e104bbc7 video Signoff-video-explainer.mp4
+slides f206e828-70d8-44aa-86cc-6fb76f933692 slide-deck Signoff-notebooklm-slides.pdf
+infographic 08e67778-102a-4448-b526-e39052036a8f infographic Signoff-infographic.png
+short 6bddeb5f-b981-4c23-a975-170e0895ada0 video Signoff-short-vertical.mp4
+audio-brief 7b9ce619-82ec-4eac-a68d-0f499d67f704 audio Signoff-podcast-brief.m4a
+report 979edac0-72a9-4dff-9048-9597a3249da1 report Signoff-briefing.md

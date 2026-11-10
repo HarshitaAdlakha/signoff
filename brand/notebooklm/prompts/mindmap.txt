@@ -1,0 +1,1 @@
+Centre: Signoff. Branches: the problem (bad data, data cascades, agentic risk), the two Switch rooms, the four agents and their roles, the 12-rule data contract, remediations and sign-off, the trust gate, Switch primitives used, what we learned, and what is next.

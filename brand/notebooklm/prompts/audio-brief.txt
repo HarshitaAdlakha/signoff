@@ -1,0 +1,1 @@
+A tight two-minute brief for a LinkedIn audience, in the Systems & Business voice: one hook (47 Citi Bike stations "last reported" in 1970), the one message (agents can watch the data, people still have to own the decision), the sign-off gate enforced by Switch, and where to try it (parasadlakha.github.io/signoff/live). Built by Paras Adlakha and Harshita Adlakha. Calm, no hype.

@@ -1,0 +1,218 @@
+{
+  "name": "Signoff",
+  "children": [
+    {
+      "name": "The Problem",
+      "children": [
+        {
+          "name": "Revenue affected: 31% on average (Monte Carlo, 2023)"
+        },
+        {
+          "name": "Incident resolution: ~15 hours per incident"
+        },
+        {
+          "name": "Detection delay: 75% take 4+ hours to detect (2022 survey)"
+        },
+        {
+          "name": "Cost of poor data: $12.9M yearly average per organization (Gartner)"
+        },
+        {
+          "name": "Data cascades: 92% of high-stakes AI projects hit compounding harm (Sambasivan et al., CHI 2021)"
+        },
+        {
+          "name": "Agentic AI risk: 40%+ projects expected to be cancelled by 2027 due to weak risk controls (Gartner, 2025)"
+        }
+      ]
+    },
+    {
+      "name": "The Two Switch Rooms",
+      "children": [
+        {
+          "name": "#data-incidents Room",
+          "children": [
+            {
+              "name": "Participants: Paras (data owner), Harshita, watcher, fixer, scribe"
+            },
+            {
+              "name": "Purpose: Detect anomalies, propose fixes, sign off, verify, and write postmortems"
+            },
+            {
+              "name": "Room documents: incident-log and postmortem-INC-00x"
+            }
+          ]
+        },
+        {
+          "name": "#rebalancing-desk Room",
+          "children": [
+            {
+              "name": "Participants: Paras, Harshita (dispatch lead), analyst, watcher"
+            },
+            {
+              "name": "Purpose: Provide trust-gated dispatch answers for truck routing"
+            },
+            {
+              "name": "Room document: data-status tracking trust verdicts"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Four Agents and Their Roles",
+      "children": [
+        {
+          "name": "Watcher Role (@monitor)",
+          "children": [
+            {
+              "name": "Executes 12-rule contract on live feed every minute"
+            },
+            {
+              "name": "Opens one thread per incident with evidence"
+            },
+            {
+              "name": "Verifies fixes and updates data-status document"
+            }
+          ]
+        },
+        {
+          "name": "Fixer Role (@remediator)",
+          "children": [
+            {
+              "name": "Proposes remediation options with previews"
+            },
+            {
+              "name": "Awaits sign-off exclusively from data owner"
+            },
+            {
+              "name": "Applies standing rules upon approval"
+            }
+          ]
+        },
+        {
+          "name": "Analyst Role (@dispatch-analyst)",
+          "children": [
+            {
+              "name": "Reads data-status document before every answer"
+            },
+            {
+              "name": "Gates output into trusted, caveated, or untrusted states"
+            }
+          ]
+        },
+        {
+          "name": "Scribe Role (@recorder)",
+          "children": [
+            {
+              "name": "Writes postmortem room documents for closed incidents"
+            },
+            {
+              "name": "Keeps incident-log current"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The 12-Rule Data Contract",
+      "children": [
+        {
+          "name": "Bogus timestamp rule: 47 stations report 1970 placeholder"
+        },
+        {
+          "name": "Over capacity rule: 6 to 9 stations report excess bikes and docks"
+        },
+        {
+          "name": "Silent station rule: 27 to 29 installed stations silent over 24 hours"
+        },
+        {
+          "name": "Feed-level defect rules: duplicates, stale feed, volume drop, and unreachable feed"
+        }
+      ]
+    },
+    {
+      "name": "Remediations and Sign-Off",
+      "children": [
+        {
+          "name": "Standing rules applied on every subsequent run"
+        },
+        {
+          "name": "Preview requirement computing exact changes before approval"
+        },
+        {
+          "name": "Sign-off enforcement via Switch platform addressing policy (owner only)"
+        },
+        {
+          "name": "Bounded fallback rule for frozen feeds lasting up to 30 minutes"
+        }
+      ]
+    },
+    {
+      "name": "The Trust Gate",
+      "children": [
+        {
+          "name": "Untrusted verdict: Refuses dispatch (\"I won't send a truck\") when watcher is silent or feed incident is open"
+        },
+        {
+          "name": "Caveated verdict: Answers while naming open incidents and held stations"
+        },
+        {
+          "name": "Trusted verdict: Returns normal dispatch answers with cited stations"
+        }
+      ]
+    },
+    {
+      "name": "Switch Primitives Used",
+      "children": [
+        {
+          "name": "Rooms bridged to Mattermost"
+        },
+        {
+          "name": "Exclusive roles (@monitor, @remediator, @recorder, @dispatch-analyst)"
+        },
+        {
+          "name": "Addressing policy restricting fixer control to data owner"
+        },
+        {
+          "name": "Threads binding each incident to a single discussion"
+        },
+        {
+          "name": "Room documents (data-status, incident-log, postmortems)"
+        }
+      ]
+    },
+    {
+      "name": "What We Learned",
+      "children": [
+        {
+          "name": "Platform gate: Platform addressing policy outperforms custom code checks"
+        },
+        {
+          "name": "Job hand-offs: Address roles rather than specific agent names"
+        },
+        {
+          "name": "Contracts: Room documents serve as shared contracts between agents"
+        },
+        {
+          "name": "Resilience: Architect for connection drops and state recovery under load"
+        }
+      ]
+    },
+    {
+      "name": "What Is Next",
+      "children": [
+        {
+          "name": "Governance: Two-person sign-off for feed-level incidents and rule expiry"
+        },
+        {
+          "name": "Investigator role: Coding agent via Switch Console for read-only root cause"
+        },
+        {
+          "name": "Ecosystem integration: Slack, Teams, Discord, and Telegram bridges"
+        },
+        {
+          "name": "Feed expansion: Scaling to 1,000+ GBFS mobility systems"
+        }
+      ]
+    }
+  ]
+}
